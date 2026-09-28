@@ -1,0 +1,87 @@
+{
+  "_about": "Phase 1 quiz flow. 7 taps, all visual chips. Answers stay in sessionStorage only. `maps_to` = taxonomy key the answer scores against.",
+  "version": "0.1.0",
+  "privacy_banner": "Nothing you pick is saved. Close the tab and it's gone. 🤍",
+  "questions": [
+    {
+      "id": "occasion_group",
+      "prompt": "Where are you off to?",
+      "type": "single",
+      "maps_to": "occasions",
+      "options": [
+        { "id": "everyday", "label": "College / office / daily", "emoji": "🎒" },
+        { "id": "social", "label": "Going out", "emoji": "🥂" },
+        { "id": "wedding", "label": "Shaadi function", "emoji": "💍" },
+        { "id": "festival", "label": "Festival", "emoji": "🪔" },
+        { "id": "family_religious", "label": "Family / temple", "emoji": "🙏" },
+        { "id": "milestone", "label": "Big day (farewell, interview…)", "emoji": "🎓" }
+      ]
+    },
+    {
+      "id": "occasion",
+      "prompt": "Which one exactly?",
+      "type": "single",
+      "maps_to": "occasions",
+      "options_from": "taxonomy.occasions[answers.occasion_group]"
+    },
+    {
+      "id": "company",
+      "prompt": "Who'll be there?",
+      "hint": "Helps us get the coverage right, no judgement.",
+      "type": "single",
+      "maps_to": "company"
+    },
+    {
+      "id": "ethnic_dial",
+      "prompt": "Desi, western or somewhere in between?",
+      "type": "slider3",
+      "maps_to": "ethnic_dial"
+    },
+    {
+      "id": "vibe",
+      "prompt": "Pick your vibe today",
+      "type": "multi",
+      "max": 2,
+      "maps_to": "vibes"
+    },
+    {
+      "id": "weather",
+      "prompt": "What's the weather doing?",
+      "type": "single",
+      "maps_to": "weather"
+    },
+    {
+      "id": "limits",
+      "prompt": "Any deal-breakers?",
+      "type": "multi",
+      "optional": true,
+      "maps_to": "comfort_limits"
+    },
+    {
+      "id": "budget",
+      "prompt": "Budget?",
+      "type": "single",
+      "optional": true,
+      "maps_to": "budget"
+    },
+    {
+      "id": "undertone",
+      "prompt": "Want colours picked for your skin undertone?",
+      "hint": "Check your wrist veins in daylight: green-ish = warm, blue/purple = cool, can't tell = neutral.",
+      "type": "single",
+      "optional": true,
+      "maps_to": "undertone"
+    }
+  ],
+  "scoring": {
+    "weights": { "occasion": 3, "ethnic_dial": 2, "vibe": 2, "weather": 1.5, "company": 1.5, "budget": 1, "limits": 1, "undertone": 0.75 },
+    "bonuses": { "festival_colour_today": 1, "trending": 0.5, "occasion_colour_prefer": 1 },
+    "penalties": { "occasion_colour_avoid": -2 },
+    "hard_filters": ["limits", "weather.bad_fabrics", "weather.bad_lengths", "budget.max_inr"],
+    "results": { "count": 3, "diversify_by": "hero_garment" }
+  },
+  "result_card": {
+    "shows": ["outfit_image", "title", "items", "styling_tip", "tote_pairing", "accessory_pairing", "why_this"],
+    "actions": ["save_png_locally", "web_share", "shop_tote", "retake"]
+  }
+}

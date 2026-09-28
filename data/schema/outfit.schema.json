@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://toteaa.com/schema/outfit.json",
+  "title": "Outfit",
+  "description": "One outfit record. All enum-like values must come from data/taxonomy.json.",
+  "type": "object",
+  "required": ["id", "title", "occasions", "ethnic_dial", "vibes", "items", "palette", "modesty_level", "source"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^of_[a-z0-9_]+$" },
+    "title": { "type": "string", "maxLength": 60 },
+    "image": { "type": "string", "description": "Relative path or URL to a licensed/owned image. No identifiable faces." },
+    "occasions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "ethnic_dial": { "enum": ["desi", "indo_western", "western"] },
+    "vibes": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 3 },
+    "company_fit": { "type": "array", "items": { "type": "string" } },
+    "weather_fit": { "type": "array", "items": { "type": "string" } },
+    "palette": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 4 },
+    "modesty_level": { "type": "integer", "minimum": 0, "maximum": 3 },
+    "comfort": { "type": "array", "items": { "type": "string" }, "description": "comfort_limits ids this outfit satisfies" },
+    "price_band_inr": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+    "trend_tags": { "type": "array", "items": { "type": "string" } },
+    "items": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["slot", "garment"],
+        "properties": {
+          "slot": { "enum": ["top", "bottom", "full", "layer", "footwear", "jewellery", "bag", "extra"] },
+          "garment": { "type": "string" },
+          "colour": { "type": "string" },
+          "fabric": { "type": "string" },
+          "print": { "type": "string" },
+          "length": { "enum": ["crop", "hip", "knee", "midi", "ankle", "floor"] },
+          "cutout_png": { "type": "string", "description": "Phase 3: transparent PNG of this piece for mix & match" },
+          "shop_url": { "type": "string", "description": "Affiliate / own-store link" }
+        }
+      }
+    },
+    "styling_tip": { "type": "string", "maxLength": 200 },
+    "tote_pairing": {
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "accessory_pairing": { "type": "array", "items": { "type": "string" } },
+    "source": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["curated", "ai_generated", "affiliate", "ugc_consented", "own_shoot"] },
+        "licence": { "type": "string" },
+        "credit": { "type": "string" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "tagged_by": { "enum": ["llm", "human", "llm+human"] },
+        "approved": { "type": "boolean" }
+      }
+    }
+  }
+}

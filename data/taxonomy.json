@@ -1,0 +1,122 @@
+{
+  "_about": "Controlled vocabulary for every outfit, item and quiz answer. Taggers (LLM or human) may ONLY use ids from this file.",
+  "version": "0.1.0",
+
+  "occasions": {
+    "everyday": ["college", "office", "wfh_call", "errands", "travel_airport", "gym_to_cafe"],
+    "social": ["brunch", "date_night", "birthday_party", "house_party", "concert_gig", "clubbing", "movie_outing"],
+    "wedding": ["roka_engagement", "haldi", "mehendi", "sangeet", "cocktail", "wedding_guest", "reception"],
+    "festival": ["diwali", "navratri_garba", "durga_puja", "holi", "eid", "raksha_bandhan", "karva_chauth", "onam", "pongal", "ganesh_chaturthi", "lohri", "christmas_newyear"],
+    "family_religious": ["temple_gurudwara", "home_puja", "family_dinner", "rishta_meet"],
+    "milestone": ["farewell", "college_fest", "interview", "first_day_work", "graduation"]
+  },
+
+  "company": [
+    { "id": "family", "label": "Family / relatives", "modesty_bias": 2 },
+    { "id": "friends", "label": "Friends only", "modesty_bias": 0 },
+    { "id": "colleagues", "label": "Colleagues", "modesty_bias": 1 },
+    { "id": "date", "label": "Date", "modesty_bias": 0 },
+    { "id": "mixed", "label": "Everyone", "modesty_bias": 1 }
+  ],
+
+  "ethnic_dial": [
+    { "id": "desi", "label": "Full desi" },
+    { "id": "indo_western", "label": "Indo-western" },
+    { "id": "western", "label": "Full western" }
+  ],
+
+  "vibes": [
+    { "id": "main_character", "label": "Main character" },
+    { "id": "soft_cute", "label": "Soft & cute" },
+    { "id": "boss", "label": "Boss energy" },
+    { "id": "comfy", "label": "Comfy / lazy" },
+    { "id": "bold", "label": "Bold & loud" },
+    { "id": "minimal", "label": "Clean minimal" },
+    { "id": "boho", "label": "Boho / artsy" },
+    { "id": "old_money", "label": "Old money" },
+    { "id": "streetwear", "label": "Streetwear" },
+    { "id": "romantic", "label": "Romantic" }
+  ],
+
+  "weather": [
+    { "id": "hot_humid", "label": "Hot & sticky", "bad_fabrics": ["velvet", "polyester", "heavy_silk", "wool"] },
+    { "id": "dry_heat", "label": "Dry heat", "bad_fabrics": ["velvet", "wool"] },
+    { "id": "monsoon", "label": "Rainy", "bad_fabrics": ["velvet", "raw_silk"], "bad_lengths": ["floor"] },
+    { "id": "pleasant", "label": "Pleasant", "bad_fabrics": [] },
+    { "id": "cold", "label": "Cold", "bad_fabrics": ["linen"] },
+    { "id": "ac_indoors", "label": "AC indoors", "bad_fabrics": [] }
+  ],
+
+  "budget": [
+    { "id": "own_it", "label": "Use what I have" },
+    { "id": "under_1k", "label": "Under ₹1,000", "max_inr": 1000 },
+    { "id": "1k_3k", "label": "₹1,000–3,000", "max_inr": 3000 },
+    { "id": "3k_8k", "label": "₹3,000–8,000", "max_inr": 8000 },
+    { "id": "splurge", "label": "Splurge" }
+  ],
+
+  "comfort_limits": [
+    { "id": "no_dupatta", "label": "No dupatta drama" },
+    { "id": "flats_only", "label": "Flats only" },
+    { "id": "covered_shoulders", "label": "Covered shoulders" },
+    { "id": "below_knee", "label": "Below the knee" },
+    { "id": "pockets", "label": "Need pockets" },
+    { "id": "easy_to_dance", "label": "Easy to dance in" },
+    { "id": "no_sheer", "label": "Nothing sheer" }
+  ],
+
+  "undertone": [
+    { "id": "warm", "flattering": ["mustard", "terracotta", "rust", "peach", "olive", "teal", "coral", "gold"] },
+    { "id": "cool", "flattering": ["royal_blue", "magenta", "emerald", "lavender", "wine", "silver", "icy_pink"] },
+    { "id": "neutral", "flattering": ["emerald", "royal_blue", "teal", "wine", "ivory", "blush"] },
+    { "id": "skip", "flattering": [] }
+  ],
+  "universal_colours": ["emerald", "royal_blue", "teal", "wine", "ivory"],
+
+  "garments": {
+    "ethnic_top": ["kurta", "kurti", "short_kurti", "anarkali", "choli", "blouse", "corset_blouse", "kaftan"],
+    "ethnic_bottom": ["salwar", "churidar", "palazzo", "sharara", "gharara", "dhoti_pants", "lehenga_skirt", "straight_pants"],
+    "ethnic_full": ["saree", "pre_draped_saree", "lehenga_set", "anarkali_set", "sharara_set", "kurta_set", "gown", "half_saree", "kasavu_saree"],
+    "western_top": ["tshirt", "graphic_tee", "shirt", "crop_top", "tank", "corset_top", "blouse_western", "sweater", "hoodie"],
+    "western_bottom": ["wide_leg_jeans", "straight_jeans", "cargo", "trousers", "skirt_mini", "skirt_midi", "skirt_maxi", "shorts"],
+    "western_full": ["dress_mini", "dress_midi", "dress_maxi", "jumpsuit", "coord_set"],
+    "layer": ["dupatta", "shrug", "denim_jacket", "blazer", "ethnic_jacket", "cardigan", "shawl", "cape"],
+    "footwear": ["sneakers", "juttis", "kolhapuris", "block_heels", "stilettos", "flats", "sandals", "loafers", "boots", "mojari"],
+    "jewellery": ["jhumkas", "oxidised_silver", "kundan", "temple_jewellery", "chandbalis", "studs", "hoops", "layered_chains", "maang_tikka", "bangles", "nose_pin", "anklet"],
+    "bag": ["tote", "potli", "clutch", "sling", "backpack", "mini_bag"]
+  },
+
+  "fabrics": ["cotton", "linen", "chikankari", "mulmul", "chanderi", "georgette", "chiffon", "organza", "crepe", "rayon", "silk", "heavy_silk", "raw_silk", "banarasi", "velvet", "denim", "polyester", "khadi", "wool", "satin", "net"],
+  "breathable_fabrics": ["cotton", "linen", "chikankari", "mulmul", "khadi", "chanderi", "rayon"],
+
+  "prints_work": ["solid", "floral", "block_print", "bandhani", "leheriya", "ikat", "kalamkari", "ajrakh", "chikankari_embroidery", "mirror_work", "gota_patti", "zari", "sequins", "phulkari", "stripes", "checks", "graphic", "polka"],
+
+  "colours": ["white", "ivory", "beige", "black", "grey", "navy", "royal_blue", "sky_blue", "teal", "emerald", "mint", "olive", "sage", "yellow", "mustard", "orange", "rust", "terracotta", "coral", "peach", "red", "maroon", "wine", "magenta", "pink", "blush", "icy_pink", "lavender", "purple", "gold", "silver", "brown"],
+
+  "modesty_level": {
+    "_about": "0 = revealing, 3 = fully covered. Derived from sleeve/neck/length.",
+    "values": [0, 1, 2, 3]
+  },
+
+  "occasion_colour_rules": {
+    "haldi": { "prefer": ["yellow", "mustard", "orange", "peach"], "avoid": ["white"] },
+    "mehendi": { "prefer": ["emerald", "mint", "olive", "teal", "sage"], "avoid": [] },
+    "sangeet": { "prefer": ["emerald", "wine", "navy", "purple", "magenta"], "avoid": [] },
+    "wedding_guest": { "prefer": ["emerald", "royal_blue", "magenta", "pink", "blush", "mint", "lavender"], "avoid": ["white", "black", "red"] },
+    "holi": { "prefer": ["white", "ivory"], "avoid": [] },
+    "karva_chauth": { "prefer": ["red", "maroon", "pink"], "avoid": ["black", "white"] },
+    "onam": { "prefer": ["ivory", "gold"], "avoid": [] },
+    "diwali": { "prefer": ["gold", "red", "yellow", "magenta", "emerald"], "avoid": ["black"] }
+  },
+
+  "festival_calendar": {
+    "_about": "Fill yearly from a panchang (e.g. drikpanchang.com). Used to auto-suggest 'colour of the day'.",
+    "navratri_2026": { "start": "2026-09-24", "end": "2026-10-02", "day_colours": [] }
+  },
+
+  "trend_tags": {
+    "_about": "Refresh monthly from Google Trends IN / manual Instagram research.",
+    "updated": "2026-09",
+    "values": ["coord_set", "chikankari_coord", "corset_blouse_saree", "lehenga_skirt_with_shirt", "sneakers_with_ethnic", "kurta_with_denim_jacket", "oversized_tee_wide_leg", "sharara_coord", "pre_draped_saree", "old_money_ethnic"]
+  }
+}
