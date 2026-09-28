@@ -1,0 +1,486 @@
+<title>Kya Pehnu? Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Rozha+One&display=swap">
+<style>
+:root{
+  --paper:#FFF5F8; --surface:#FFFFFF; --sunk:#FBE9F0; --ink:#2B1631; --muted:#7A5F77;
+  --line:#EBD3DE; --rani:#C8195F; --rani-ink:#FFFFFF; --rani-soft:#FADCE8;
+  --marigold:#E89A00; --marigold-soft:#FFF0CC; --leaf:#1E7457;
+  --display:"Rozha One", "Playfair Display", Georgia, serif;
+  --body:"Hind", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#170D1B; --surface:#231428; --sunk:#2C1A32; --ink:#F8EAF1; --muted:#BFA3B6;
+    --line:#3D2743; --rani:#FF5E98; --rani-ink:#1B0B14; --rani-soft:#4A1F35;
+    --marigold:#FFC23D; --marigold-soft:#3A2A0C; --leaf:#5FD1A4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#170D1B; --surface:#231428; --sunk:#2C1A32; --ink:#F8EAF1; --muted:#BFA3B6;
+  --line:#3D2743; --rani:#FF5E98; --rani-ink:#1B0B14; --rani-soft:#4A1F35;
+  --marigold:#FFC23D; --marigold-soft:#3A2A0C; --leaf:#5FD1A4;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:600px;margin:0 auto}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px 10px}
+.brand{font-family:var(--display);font-size:22px;letter-spacing:.2px;color:var(--rani);line-height:1}
+.brand small{font-family:var(--body);font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.lock{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;text-align:right}
+.lock svg{flex:none}
+
+/* stitch progress */
+.stitch{position:relative;height:18px;margin-block:6px 18px}
+.stitch::before{content:"";position:absolute;left:0;right:0;top:8px;border-top:2px dashed var(--line)}
+.stitch .done{position:absolute;left:0;top:8px;border-top:2px dashed var(--rani);transition:width .35s ease}
+.stitch .needle{position:absolute;top:3px;width:12px;height:12px;border-radius:50%;background:var(--rani);box-shadow:0 0 0 4px var(--rani-soft);transform:translateX(-6px);transition:left .35s ease}
+
+/* intro */
+.hero{padding-block:18px 8px;display:grid;gap:14px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,12vw,72px);line-height:.95;margin:0;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--rani)}
+.hero p{margin:0;font-size:18px;color:var(--muted);max-width:34ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0;padding:0;list-style:none}
+.facts li{font-size:13px;padding:4px 10px;border-radius:99px;background:var(--sunk);color:var(--ink)}
+.cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.btn{appearance:none;border:0;cursor:pointer;border-radius:99px;padding:14px 26px;font-weight:600;font-size:16px;background:var(--rani);color:var(--rani-ink);transition:transform .12s ease}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.small{padding:9px 16px;font-size:14px}
+.link{appearance:none;background:none;border:0;padding:6px 2px;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* question */
+.q{display:grid;gap:14px}
+.q h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,7.5vw,42px);line-height:1.05;margin:0;text-wrap:balance}
+.q .hint{margin:-4px 0 0;color:var(--muted);font-size:15px}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.opt{appearance:none;cursor:pointer;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:var(--r);padding:14px 14px 13px;font-size:15.5px;font-weight:500;line-height:1.25;display:flex;gap:10px;align-items:center;min-height:56px;transition:border-color .15s,background .15s,transform .1s}
+.opt:hover{border-color:var(--rani)}
+.opt:active{transform:scale(.98)}
+.opt[aria-pressed="true"]{border-color:var(--rani);background:var(--rani-soft)}
+.opt .em{font-size:22px;line-height:1}
+.opt .tick{margin-left:auto;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);flex:none}
+.opt[aria-pressed="true"] .tick{background:var(--rani);border-color:var(--rani);box-shadow:inset 0 0 0 3px var(--surface)}
+.dial{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--line);border-radius:99px;padding:4px;background:var(--surface)}
+.dial .opt{border:0;border-radius:99px;justify-content:center;text-align:center;min-height:48px;background:transparent}
+.dial .opt[aria-pressed="true"]{background:var(--rani);color:var(--rani-ink)}
+.dial .opt .tick{display:none}
+.dial-scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding-inline:8px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px}
+.nav .right{display:flex;gap:10px;align-items:center}
+.count{font-size:13px;color:var(--muted)}
+
+/* results */
+.res-head{display:grid;gap:8px;padding-block:10px 18px}
+.res-head h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,8vw,48px);line-height:1;margin:0}
+.res-head p{margin:0;color:var(--muted)}
+.summary{display:flex;flex-wrap:wrap;gap:6px}
+.summary span{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.cards{display:grid;gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.swatch{display:flex;height:170px;position:relative}
+.band{position:relative;flex:1;min-width:28px}
+.band.hero{flex:3}
+.band.mid{flex:1.6}
+.band span{position:absolute;left:8px;bottom:8px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.88);color:#2B1631;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.rank{position:absolute;top:10px;left:10px;font-family:var(--display);font-size:20px;line-height:1;background:var(--surface);color:var(--rani);padding:6px 10px 4px;border-radius:10px}
+.card-body{padding:18px 18px 20px;display:grid;gap:14px}
+.card h3{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.1;margin:0;text-wrap:balance}
+.why{display:flex;flex-wrap:wrap;gap:6px}
+.why span{font-size:12.5px;padding:3px 10px;border-radius:99px;background:var(--marigold-soft);color:var(--ink)}
+.items{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.items li{display:grid;grid-template-columns:88px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.items .slot{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.items .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.tip{margin:0;font-size:15px;padding-left:12px;border-left:3px solid var(--marigold)}
+.tag{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:14px 16px 14px 14px;border:1.5px dashed var(--rani);border-radius:12px 12px 12px 30px;background:var(--rani-soft)}
+.tag .hole{width:16px;height:16px;border-radius:50%;background:var(--surface);border:1.5px solid var(--rani)}
+.tag b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--rani)}
+.tag strong{display:block;font-size:16px;font-weight:600}
+.tag p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.res-foot{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.example{margin-top:26px;display:grid;gap:10px}
+.example .eyebrow{display:flex;align-items:center;gap:8px}
+.example .eyebrow::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:99px;font-size:14px;z-index:20}
+.overlay{position:fixed;inset:0;background:rgba(23,13,27,.72);display:grid;place-items:center;padding:20px;z-index:30}
+.overlay .sheet{background:var(--surface);border-radius:18px;padding:16px;max-width:420px;width:100%;display:grid;gap:12px;max-height:92vh;overflow:auto}
+.overlay img{border-radius:10px;width:100%;height:auto;display:block}
+.overlay p{margin:0;font-size:14px;color:var(--muted);text-align:center}
+.privacy{margin-top:30px;font-size:13px;color:var(--muted);text-align:center;max-width:44ch;margin-inline:auto}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.fade{animation:fade .28s ease both}
+@keyframes fade{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="bar">
+    <div class="brand">toteaa<small>outfit quiz</small></div>
+    <div class="lock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Nothing is saved</span></div>
+  </header>
+  <div class="stitch" id="stitch" hidden><div class="done" id="done"></div><div class="needle" id="needle"></div></div>
+  <main id="app"></main>
+  <p class="privacy" id="privacy"></p>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script type="application/json" id="taxonomy-data">/*__TAXONOMY__*/</script>
+<script type="application/json" id="quiz-data">/*__QUIZ__*/</script>
+<script type="application/json" id="outfits-data">/*__OUTFITS__*/</script>
+<script>
+(function(){
+const TAX = JSON.parse(document.getElementById('taxonomy-data').textContent);
+const QUIZ = JSON.parse(document.getElementById('quiz-data').textContent);
+const OUTFITS = JSON.parse(document.getElementById('outfits-data').textContent);
+const app = document.getElementById('app');
+document.getElementById('privacy').textContent = QUIZ.privacy_banner;
+
+/* ---------- labels ---------- */
+const LABEL = {
+  wfh_call:"WFH video call", travel_airport:"Travel / airport", gym_to_cafe:"Gym → café", errands:"Running errands",
+  brunch:"Brunch", date_night:"Date night", birthday_party:"Birthday party", house_party:"House party", concert_gig:"Concert / gig", movie_outing:"Movie outing",
+  roka_engagement:"Roka / engagement", haldi:"Haldi", mehendi:"Mehendi", sangeet:"Sangeet", cocktail:"Cocktail night", wedding_guest:"Wedding day", reception:"Reception",
+  diwali:"Diwali", navratri_garba:"Navratri / garba", durga_puja:"Durga Puja", holi:"Holi", eid:"Eid", raksha_bandhan:"Raksha Bandhan", karva_chauth:"Karva Chauth", onam:"Onam", pongal:"Pongal", ganesh_chaturthi:"Ganesh Chaturthi", lohri:"Lohri", christmas_newyear:"Christmas / New Year",
+  temple_gurudwara:"Temple / gurudwara", home_puja:"Puja at home", family_dinner:"Family dinner", rishta_meet:"Meeting the rishta family",
+  farewell:"Farewell", college_fest:"College fest", interview:"Interview", first_day_work:"First day at work", graduation:"Graduation",
+  tshirt:"T-shirt", graphic_tee:"Graphic tee", coord_set:"Co-ord set", dress_midi:"Midi dress", dress_mini:"Mini dress", dress_maxi:"Maxi dress",
+  blouse_western:"Blouse", skirt_midi:"Midi skirt", skirt_mini:"Mini skirt", skirt_maxi:"Maxi skirt", wide_leg_jeans:"Wide-leg jeans", straight_jeans:"Straight jeans",
+  pre_draped_saree:"Pre-draped saree", kasavu_saree:"Kasavu saree", lehenga_set:"Lehenga", lehenga_skirt:"Lehenga skirt", anarkali_set:"Anarkali set", sharara_set:"Sharara set", kurta_set:"Kurta set",
+  short_kurti:"Short kurti", corset_blouse:"Corset blouse", corset_top:"Corset top", dhoti_pants:"Dhoti pants", straight_pants:"Straight pants", denim_jacket:"Denim jacket", ethnic_jacket:"Ethnic jacket",
+  block_heels:"Block heels", oxidised_silver:"Oxidised silver", temple_jewellery:"Temple jewellery", layered_chains:"Layered chains", maang_tikka:"Maang tikka", nose_pin:"Nose pin", mini_bag:"Mini bag",
+  chikankari_embroidery:"chikankari", mirror_work:"mirror work", gota_patti:"gota patti", block_print:"block print",
+  royal_blue:"royal blue", sky_blue:"sky blue", icy_pink:"icy pink",
+  warm:"Warm · green-ish veins", cool:"Cool · blue/purple veins", neutral:"Neutral · can't tell", skip:"Skip this",
+  everyday:"Daily", social:"Going out", wedding:"Shaadi", festival:"Festival", family_religious:"Family / temple", milestone:"Big day"
+};
+const human = id => LABEL[id] || (id.charAt(0).toUpperCase()+id.slice(1).replace(/_/g,' '));
+const lower = id => (LABEL[id] || id.replace(/_/g,' ')).toLowerCase();
+const byId = (arr,id) => arr.find(x=>x.id===id);
+
+const HEX = {white:"#FAFAF7",ivory:"#F3EBD6",beige:"#D9C4A3",black:"#1D1A1F",grey:"#9C9AA2",navy:"#1F2A4D",royal_blue:"#2748B8",sky_blue:"#8DB8E3",teal:"#137C7C",emerald:"#0F7B53",mint:"#A8DCC2",olive:"#6B7036",sage:"#A3B59A",yellow:"#F4CF3A",mustard:"#D4A017",orange:"#EE7B22",rust:"#B5502A",terracotta:"#C8643F",coral:"#F27B6B",peach:"#F6BE9A",red:"#C8102E",maroon:"#6D1A2A",wine:"#6E1F3B",magenta:"#C2187A",pink:"#EE7FAE",blush:"#F2C6CF",icy_pink:"#F6DDE6",lavender:"#BFA7DA",purple:"#6A3A9A",gold:"#C9A23A",silver:"#BFC3C8",brown:"#7A4E2D"};
+const isLight = hex => { const n=parseInt(hex.slice(1),16); return ((n>>16)*299+((n>>8)&255)*587+(n&255)*114)/1000 > 150; };
+
+/* print → CSS pattern layered over a base colour */
+function pattern(print, base){
+  const ink = isLight(base) ? 'rgba(43,22,49,.22)' : 'rgba(255,255,255,.28)';
+  const glint = isLight(base) ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.55)';
+  switch(print){
+    case 'bandhani': case 'polka':
+      return `radial-gradient(circle at 50% 50%, ${glint} 0 2.2px, transparent 2.8px) 0 0/14px 14px, radial-gradient(circle, ${ink} 0 1px, transparent 1.6px) 7px 7px/14px 14px`;
+    case 'sequins': case 'mirror_work':
+      return `radial-gradient(circle at 35% 35%, ${glint} 0 1.6px, transparent 2px) 0 0/9px 9px, radial-gradient(circle, ${ink} 0 3px, transparent 3.5px) 4px 4px/9px 9px`;
+    case 'stripes': case 'leheriya':
+      return `repeating-linear-gradient(135deg, ${ink} 0 5px, transparent 5px 14px)`;
+    case 'checks':
+      return `repeating-linear-gradient(0deg, ${ink} 0 4px, transparent 4px 16px), repeating-linear-gradient(90deg, ${ink} 0 4px, transparent 4px 16px)`;
+    case 'floral': case 'block_print': case 'ajrakh': case 'kalamkari': case 'phulkari': case 'ikat':
+      return `radial-gradient(circle at 50% 50%, ${glint} 0 2px, transparent 2.5px) 0 0/26px 26px, radial-gradient(circle at 50% 50%, ${ink} 0 6px, transparent 6.5px) 0 0/26px 26px, radial-gradient(circle, ${ink} 0 3px, transparent 3.5px) 13px 13px/26px 26px`;
+    case 'chikankari_embroidery': case 'zari': case 'gota_patti':
+      return `radial-gradient(circle, ${glint} 0 1.1px, transparent 1.6px) 0 0/8px 8px, repeating-linear-gradient(90deg, transparent 0 22px, ${ink} 22px 23px)`;
+    case 'graphic':
+      return `radial-gradient(circle at 50% 45%, ${ink} 0 22px, transparent 23px)`;
+    default: return '';
+  }
+}
+
+/* ---------- state (session only) ---------- */
+let answers = {}, step = -1, shown = 3;
+const SKEY = 'toteaa-quiz-session';
+try { const s = JSON.parse(sessionStorage.getItem(SKEY)||'null'); if (s) { answers = s.answers||{}; step = s.step ?? -1; } } catch(e) {}
+const persist = () => { try { sessionStorage.setItem(SKEY, JSON.stringify({answers, step})); } catch(e) {} };
+
+/* ---------- question options ---------- */
+function optionsFor(q){
+  if (q.options) return q.options.map(o=>({id:o.id,label:o.label,emoji:o.emoji}));
+  switch(q.id){
+    case 'occasion': return (TAX.occasions[answers.occasion_group]||[]).map(id=>({id,label:human(id)}));
+    case 'company': return TAX.company.map(c=>({id:c.id,label:c.label}));
+    case 'ethnic_dial': return TAX.ethnic_dial.map(c=>({id:c.id,label:c.label}));
+    case 'vibe': return TAX.vibes.map(c=>({id:c.id,label:c.label}));
+    case 'weather': return TAX.weather.map(c=>({id:c.id,label:c.label}));
+    case 'limits': return TAX.comfort_limits.map(c=>({id:c.id,label:c.label}));
+    case 'budget': return TAX.budget.map(c=>({id:c.id,label:c.label}));
+    case 'undertone': return TAX.undertone.map(c=>({id:c.id,label:human(c.id)}));
+  }
+  return [];
+}
+const isMulti = q => q.type==='multi';
+const answered = q => { const a=answers[q.id]; return isMulti(q) ? Array.isArray(a) && a.length>0 : !!a; };
+
+/* ---------- scoring ---------- */
+const groupOf = occ => Object.keys(TAX.occasions).find(g=>TAX.occasions[g].includes(occ));
+function heroGarment(o){ const it=o.items.find(i=>i.slot==='full')||o.items.find(i=>i.slot==='top'); return it?it.garment:o.id; }
+
+function evaluate(o, relax){
+  const W = QUIZ.scoring.weights, B = QUIZ.scoring.bonuses;
+  let s = 0; const why = []; const fails = [];
+  // occasion
+  if (o.occasions.includes(answers.occasion)) { s += W.occasion; why.push('Made for '+human(answers.occasion)); }
+  else if (o.occasions.some(x=>groupOf(x)===answers.occasion_group)) s += W.occasion/3;
+  // colour rules for the occasion
+  const rule = TAX.occasion_colour_rules[answers.occasion];
+  if (rule) {
+    if (o.palette.some(c=>rule.prefer.includes(c))) { s += B.occasion_colour_prefer; why.push('Right colours for '+human(answers.occasion)); }
+    if (o.palette.some(c=>rule.avoid.includes(c))) s += QUIZ.scoring.penalties.occasion_colour_avoid;
+  }
+  // ethnic dial
+  const dials = ['desi','indo_western','western'];
+  const d = Math.abs(dials.indexOf(o.ethnic_dial) - dials.indexOf(answers.ethnic_dial));
+  if (d===0) { s += W.ethnic_dial; why.push(byId(TAX.ethnic_dial,o.ethnic_dial).label); } else if (d===1) s += W.ethnic_dial/2;
+  // vibes
+  const vib = (answers.vibe||[]).filter(v=>o.vibes.includes(v));
+  if (vib.length) { s += W.vibe * vib.length / Math.max(1,(answers.vibe||[]).length); vib.forEach(v=>why.push(byId(TAX.vibes,v).label)); }
+  // weather
+  const w = byId(TAX.weather, answers.weather);
+  if (w) {
+    const badFab = o.items.some(i=>w.bad_fabrics.includes(i.fabric));
+    const badLen = (w.bad_lengths||[]).length && o.items.some(i=>w.bad_lengths.includes(i.length));
+    if (badFab || badLen) fails.push('weather');
+    if (o.weather_fit.includes(w.id)) { s += W.weather;
+      const breathable = o.items.some(i=>TAX.breathable_fabrics.includes(i.fabric));
+      why.push(w.id==='hot_humid'&&breathable ? 'Breathable in the heat' : w.id==='monsoon' ? 'Rain-friendly' : 'Suits '+w.label.toLowerCase()+' weather');
+    }
+  }
+  // company → coverage
+  const c = byId(TAX.company, answers.company);
+  if (c) {
+    if (o.modesty_level >= c.modesty_bias && o.company_fit.includes(c.id)) { s += W.company; if (c.modesty_bias>=2) why.push('Family-approved coverage'); }
+    else if (o.modesty_level < c.modesty_bias) s -= 1.5;
+  }
+  // limits (hard)
+  const lim = answers.limits||[];
+  const unmet = lim.filter(l=>!o.comfort.includes(l));
+  if (lim.length && !unmet.length) { s += W.limits; why.push('Ticks all your deal-breakers'); }
+  if (unmet.length) fails.push('limits');
+  // budget
+  const b = byId(TAX.budget, answers.budget);
+  if (b && b.max_inr) { if (o.price_band_inr[0] <= b.max_inr) { s += W.budget; why.push('Fits '+b.label); } else fails.push('budget'); }
+  // undertone
+  const u = byId(TAX.undertone, answers.undertone);
+  if (u && u.flattering.length) { const hit = o.palette.filter(x=>u.flattering.includes(x)); if (hit.length) { s += W.undertone*hit.length; why.push('Colours for '+u.id+' undertones'); } }
+  // trending
+  if (o.trend_tags.length) { s += B.trending; why.push('Trending now'); }
+  // relaxed filters become penalties
+  const blocking = fails.filter(f=>!relax.includes(f));
+  relax.forEach(f=>{ if (fails.includes(f)) s -= 2.5; });
+  return {o, s, why:[...new Set(why)].slice(0,5), blocked: blocking.length>0};
+}
+
+function rank(){
+  const order = [[], ['budget'], ['budget','weather'], ['budget','weather','limits']];
+  let pool = [];
+  for (const relax of order) {
+    pool = OUTFITS.map(o=>evaluate(o, relax)).filter(r=>!r.blocked);
+    if (pool.length >= 6 || relax.length===3) break;
+  }
+  pool.sort((a,b)=>b.s-a.s);
+  // diversify: avoid repeating the hero garment in the top picks
+  const out = [], seen = new Set();
+  pool.forEach(r=>{ const h=heroGarment(r.o); if(!seen.has(h)){ out.push(r); seen.add(h);} });
+  pool.forEach(r=>{ if(!out.includes(r)) out.push(r); });
+  return out;
+}
+
+/* ---------- rendering ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const SLOT = {top:'Top',bottom:'Bottom',full:'Outfit',layer:'Layer',footwear:'Shoes',jewellery:'Jewellery',bag:'Bag',extra:'Extra'};
+
+function swatchHTML(o, rankNo){
+  const bands = o.items.filter(i=>i.colour && ['full','top','bottom','layer','footwear'].includes(i.slot));
+  const hero = bands.find(i=>i.slot==='full') || bands[0];
+  return `<div class="swatch" role="img" aria-label="Colour swatch: ${esc(o.palette.map(lower).join(', '))}">
+    ${bands.map(i=>{
+      const base = HEX[i.colour]||'#ccc', pat = pattern(i.print, base);
+      const cls = i===hero ? 'hero' : (i.slot==='footwear' ? '' : 'mid');
+      return `<div class="band ${cls}" style="background:${pat?pat+', ':''}${base}"><span>${esc(human(i.garment))}</span></div>`;
+    }).join('')}
+    ${rankNo ? `<div class="rank">${rankNo}</div>` : ''}
+  </div>`;
+}
+
+function cardHTML(r, idx, example){
+  const o = r.o;
+  const items = o.items.map(i=>`<li><span class="slot">${SLOT[i.slot]}</span><span>${i.colour?`<i class="dot" style="background:${HEX[i.colour]}"></i>`:''}${esc([i.colour&&lower(i.colour), i.fabric&&lower(i.fabric), i.print&&i.print!=='solid'&&lower(i.print)!==lower(i.fabric||'')&&lower(i.print)].filter(Boolean).join(' ')+' ')}<strong>${esc(human(i.garment).toLowerCase())}</strong></span></li>`).join('');
+  const tp = o.tote_pairing||{};
+  const price = o.price_band_inr ? `₹${o.price_band_inr[0].toLocaleString('en-IN')}–${o.price_band_inr[1].toLocaleString('en-IN')}` : '';
+  return `<article class="card fade" style="animation-delay:${idx*70}ms">
+    ${swatchHTML(o, example ? '' : idx+1)}
+    <div class="card-body">
+      <h3>${esc(o.title)}</h3>
+      ${r.why && r.why.length ? `<div class="why">${r.why.map(w=>`<span>${esc(w)}</span>`).join('')}</div>` : ''}
+      <ul class="items">${items}</ul>
+      <p class="tip">${esc(o.styling_tip)}</p>
+      <div class="tag"><div class="hole" aria-hidden="true"></div><div><b>Pair it with</b><strong>${esc(tp.style||'A Toteaa tote')}</strong><p>${esc(tp.reason||'')}</p></div></div>
+      <div class="meta"><span>Approx. ${price}</span>${o.accessory_pairing&&o.accessory_pairing.length?`<span>+ ${esc(o.accessory_pairing.join(', '))}</span>`:''}</div>
+      ${example ? '' : `<div class="actions">
+        <button class="btn small" data-act="img" data-id="${o.id}">Save as image</button>
+        <button class="btn small ghost" data-act="share" data-id="${o.id}">Share look</button>
+        <a class="btn small ghost" href="https://toteaa.com/" target="_blank" rel="noopener">Shop the tote</a>
+      </div>`}
+    </div>
+  </article>`;
+}
+
+function setProgress(){
+  const st = document.getElementById('stitch');
+  const qs = QUIZ.questions;
+  st.hidden = step < 0;
+  const pct = step >= qs.length ? 100 : Math.max(0, step/qs.length*100);
+  document.getElementById('done').style.width = pct+'%';
+  document.getElementById('needle').style.left = pct+'%';
+}
+
+function renderIntro(){
+  const ex = OUTFITS.find(o=>o.id==='of_haldi_mustard_sharara') || OUTFITS[0];
+  app.innerHTML = `<section class="hero fade">
+      <span class="eyebrow">Outfit finder for desi girls</span>
+      <h1>Kya <em>pehnu</em> aaj?</h1>
+      <p>Nine quick taps. Three outfits picked for your occasion, your people and your weather, each with a Toteaa tote to carry.</p>
+      <ul class="facts"><li>${OUTFITS.length} looks, Haldi to college</li><li>Under a minute</li><li>No sign-up</li></ul>
+      <div class="cta"><button class="btn" id="start">Start the quiz</button>${Object.keys(answers).length?'<button class="link" id="resume">Continue where you left off</button>':''}</div>
+    </section>
+    <section class="example"><span class="eyebrow">Example result</span>${cardHTML({o:ex, why:['Made for Haldi','Right colours for Haldi','Soft & cute']}, 0, true)}</section>`;
+  document.getElementById('start').onclick = ()=>{ answers={}; step=0; persist(); render(); };
+  const r = document.getElementById('resume'); if (r) r.onclick = ()=>{ if(step<0) step=0; render(); };
+}
+
+function renderQuestion(){
+  const qs = QUIZ.questions, q = qs[step];
+  const opts = optionsFor(q);
+  const multi = isMulti(q), dial = q.type==='slider3';
+  const cur = answers[q.id];
+  const pressed = id => multi ? (cur||[]).includes(id) : cur===id;
+  app.innerHTML = `<section class="q fade">
+      <span class="eyebrow">Question ${step+1} of ${qs.length}${q.optional?' · optional':''}</span>
+      <h2>${esc(q.prompt)}</h2>
+      ${q.hint?`<p class="hint">${esc(q.hint)}</p>`:''}
+      ${multi?`<p class="hint">Pick up to ${q.max||'any'}${q.max?'':' that apply'}.</p>`:''}
+      <div class="${dial?'dial':'opts'}" role="group" aria-label="${esc(q.prompt)}">
+        ${opts.map(o=>`<button class="opt" id="opt-${q.id}-${o.id}" data-id="${o.id}" aria-pressed="${pressed(o.id)}">${o.emoji?`<span class="em" aria-hidden="true">${o.emoji}</span>`:''}<span>${esc(o.label)}</span><i class="tick" aria-hidden="true"></i></button>`).join('')}
+      </div>
+      ${dial?'<div class="dial-scale"><span>More traditional</span><span>More modern</span></div>':''}
+      <div class="nav">
+        <button class="btn ghost small" id="back">Back</button>
+        <div class="right">
+          ${multi&&q.max?`<span class="count" id="count">${(cur||[]).length}/${q.max}</span>`:''}
+          ${q.optional&&!answered(q)?'<button class="link" id="skip">Skip</button>':''}
+          ${(multi||answered(q))?`<button class="btn small" id="next" ${answered(q)||q.optional?'':'disabled'}>${step===qs.length-1?'See my outfits':'Next'}</button>`:''}
+        </div>
+      </div>
+    </section>`;
+  app.querySelectorAll('.opt').forEach(b=>b.onclick = ()=>{
+    const id = b.dataset.id;
+    if (multi) {
+      let a = answers[q.id] || [];
+      if (a.includes(id)) a = a.filter(x=>x!==id);
+      else { a = [...a, id]; if (q.max && a.length>q.max) a = a.slice(1); }
+      answers[q.id] = a; persist(); renderQuestion();
+    } else {
+      if (q.id==='occasion_group' && answers.occasion_group!==id) delete answers.occasion;
+      answers[q.id] = id; persist();
+      setTimeout(advance, 160);
+      b.setAttribute('aria-pressed','true');
+      app.querySelectorAll('.opt').forEach(x=>{ if(x!==b) x.setAttribute('aria-pressed','false'); });
+    }
+  });
+  document.getElementById('back').onclick = ()=>{ step--; persist(); render(); };
+  const n = document.getElementById('next'); if (n) n.onclick = advance;
+  const s = document.getElementById('skip'); if (s) s.onclick = ()=>{ delete answers[q.id]; advance(); };
+}
+
+function advance(){ step++; shown = 3; persist(); render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+let lastRanked = [];
+function renderResults(){
+  lastRanked = rank();
+  const picks = lastRanked.slice(0, shown);
+  const sum = [human(answers.occasion), (byId(TAX.company,answers.company)||{}).label, (byId(TAX.ethnic_dial,answers.ethnic_dial)||{}).label, ...(answers.vibe||[]).map(v=>byId(TAX.vibes,v).label), (byId(TAX.weather,answers.weather)||{}).label].filter(Boolean);
+  app.innerHTML = `<section class="res-head fade">
+      <span class="eyebrow">Your picks</span>
+      <h2>Wear this for ${esc(human(answers.occasion))}</h2>
+      <p>Ranked by how well each look fits your answers.</p>
+      <div class="summary">${sum.map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+    </section>
+    <div class="cards">${picks.map((r,i)=>cardHTML(r,i,false)).join('')}</div>
+    <div class="res-foot">
+      ${shown < lastRanked.length ? '<button class="btn ghost" id="more">Show 3 more</button>' : ''}
+      <button class="btn ghost" id="edit">Change answers</button>
+      <button class="btn" id="again">Start over</button>
+    </div>`;
+  const m = document.getElementById('more'); if (m) m.onclick = ()=>{ shown += 3; renderResults(); };
+  document.getElementById('edit').onclick = ()=>{ step = 0; persist(); render(); };
+  document.getElementById('again').onclick = ()=>{ answers = {}; step = -1; persist(); render(); };
+  app.querySelectorAll('[data-act]').forEach(b=>b.onclick = ()=>{
+    const r = lastRanked.find(x=>x.o.id===b.dataset.id);
+    if (b.dataset.act==='img') saveImage(r.o); else share(r.o);
+  });
+}
+
+function render(){
+  setProgress();
+  if (step < 0) renderIntro();
+  else if (step >= QUIZ.questions.length) renderResults();
+  else renderQuestion();
+}
+
+/* ---------- save / share (all on-device) ---------- */
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(()=>t.hidden=true,2200); }
+function lookText(o){
+  return `${o.title}\n` + o.items.map(i=>`• ${[i.colour&&lower(i.colour), human(i.garment).toLowerCase()].filter(Boolean).join(' ')}`).join('\n') + `\nPair it with: ${(o.tote_pairing||{}).style||'a Toteaa tote'}\n\nFound on the Toteaa "Kya pehnu?" quiz`;
+}
+async function share(o){
+  const text = lookText(o);
+  if (navigator.share && window.self===window.top) { try { await navigator.share({title:o.title, text}); return; } catch(e) { if (e.name==='AbortError') return; } }
+  try { await navigator.clipboard.writeText(text); toast('Look copied. Paste it anywhere.'); }
+  catch(e) { toast('Copy did not work here. Try Save as image.'); }
+}
+async function saveImage(o){
+  try { await document.fonts.ready; } catch(e) {}
+  const W=1080,H=1350,c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  x.fillStyle='#FFF5F8'; x.fillRect(0,0,W,H);
+  // colour bands
+  const bands = o.items.filter(i=>i.colour && ['full','top','bottom','layer','footwear'].includes(i.slot));
+  const weights = bands.map((b,i)=> b.slot==='full'||i===0 ? 3 : b.slot==='footwear' ? 1 : 1.6);
+  const tot = weights.reduce((a,b)=>a+b,0); let bx=60;
+  bands.forEach((b,i)=>{ const w=(W-120)*weights[i]/tot; x.fillStyle=HEX[b.colour]; x.fillRect(bx,60,w,560);
+    x.fillStyle='rgba(255,255,255,.9)'; x.font='600 26px Hind, sans-serif'; const label=human(b.garment); const tw=Math.min(x.measureText(label).width+28,w-24);
+    if (w>90){ x.beginPath(); x.roundRect(bx+14,560,tw,40,20); x.fill(); x.fillStyle='#2B1631'; x.save(); x.beginPath(); x.rect(bx+14,560,tw,40); x.clip(); x.fillText(label,bx+28,589); x.restore(); }
+    bx+=w; });
+  x.fillStyle='#2B1631'; x.font='64px "Rozha One", Georgia, serif';
+  const words=o.title.split(' '); let line='', y=730;
+  words.forEach(wd=>{ const t=line?line+' '+wd:wd; if (x.measureText(t).width>W-120){ x.fillText(line,60,y); y+=74; line=wd; } else line=t; }); x.fillText(line,60,y);
+  y+=60; x.font='32px Hind, sans-serif'; x.fillStyle='#4A3350';
+  o.items.slice(0,5).forEach(i=>{ x.fillStyle=HEX[i.colour]||'#999'; x.beginPath(); x.arc(74,y-10,11,0,7); x.fill(); x.fillStyle='#4A3350';
+    x.fillText([i.colour&&lower(i.colour), i.fabric&&lower(i.fabric), human(i.garment).toLowerCase()].filter(Boolean).join(' '),100,y); y+=48; });
+  // tote tag
+  y = Math.max(y+20, 1130); x.setLineDash([12,8]); x.strokeStyle='#C8195F'; x.lineWidth=3; x.fillStyle='#FADCE8';
+  x.beginPath(); x.roundRect(60,y,W-120,130,[18,18,18,48]); x.fill(); x.stroke(); x.setLineDash([]);
+  x.fillStyle='#C8195F'; x.font='600 24px Hind, sans-serif'; x.fillText('PAIR IT WITH',100,y+50);
+  x.fillStyle='#2B1631'; x.font='600 36px Hind, sans-serif'; x.fillText((o.tote_pairing||{}).style||'A Toteaa tote',100,y+96);
+  x.fillStyle='#C8195F'; x.font='34px "Rozha One", Georgia, serif'; x.textAlign='right'; x.fillText('toteaa',W-60,H-40);
+  x.fillStyle='#7A5F77'; x.font='24px Hind, sans-serif'; x.textAlign='left'; x.fillText('Kya pehnu? outfit quiz',60,H-44);
+  const url = c.toDataURL('image/png');
+  const framed = window.self !== window.top;
+  const ov = document.createElement('div'); ov.className='overlay';
+  ov.innerHTML = `<div class="sheet" role="dialog" aria-label="Your look as an image"><img src="${url}" alt="${esc(o.title)}"><p>${framed?'Long-press (phone) or right-click (desktop) the image to save it.':'Saved only on your device.'}</p>${framed?'':`<a class="btn" href="${url}" download="${o.id}.png">Download PNG</a>`}<button class="btn ghost" id="close-ov">Close</button></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove(); ov.querySelector('#close-ov').onclick=close; ov.onclick=e=>{ if(e.target===ov) close(); };
+}
+
+render();
+})();
+</script>

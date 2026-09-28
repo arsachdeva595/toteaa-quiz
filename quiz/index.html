@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Kya Pehnu? Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Rozha+One&display=swap">
+<style>
+:root{
+  --paper:#FFF5F8; --surface:#FFFFFF; --sunk:#FBE9F0; --ink:#2B1631; --muted:#7A5F77;
+  --line:#EBD3DE; --rani:#C8195F; --rani-ink:#FFFFFF; --rani-soft:#FADCE8;
+  --marigold:#E89A00; --marigold-soft:#FFF0CC; --leaf:#1E7457;
+  --display:"Rozha One", "Playfair Display", Georgia, serif;
+  --body:"Hind", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#170D1B; --surface:#231428; --sunk:#2C1A32; --ink:#F8EAF1; --muted:#BFA3B6;
+    --line:#3D2743; --rani:#FF5E98; --rani-ink:#1B0B14; --rani-soft:#4A1F35;
+    --marigold:#FFC23D; --marigold-soft:#3A2A0C; --leaf:#5FD1A4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#170D1B; --surface:#231428; --sunk:#2C1A32; --ink:#F8EAF1; --muted:#BFA3B6;
+  --line:#3D2743; --rani:#FF5E98; --rani-ink:#1B0B14; --rani-soft:#4A1F35;
+  --marigold:#FFC23D; --marigold-soft:#3A2A0C; --leaf:#5FD1A4;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:600px;margin:0 auto}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px 10px}
+.brand{font-family:var(--display);font-size:22px;letter-spacing:.2px;color:var(--rani);line-height:1}
+.brand small{font-family:var(--body);font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.lock{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;text-align:right}
+.lock svg{flex:none}
+
+/* stitch progress */
+.stitch{position:relative;height:18px;margin-block:6px 18px}
+.stitch::before{content:"";position:absolute;left:0;right:0;top:8px;border-top:2px dashed var(--line)}
+.stitch .done{position:absolute;left:0;top:8px;border-top:2px dashed var(--rani);transition:width .35s ease}
+.stitch .needle{position:absolute;top:3px;width:12px;height:12px;border-radius:50%;background:var(--rani);box-shadow:0 0 0 4px var(--rani-soft);transform:translateX(-6px);transition:left .35s ease}
+
+/* intro */
+.hero{padding-block:18px 8px;display:grid;gap:14px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,12vw,72px);line-height:.95;margin:0;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--rani)}
+.hero p{margin:0;font-size:18px;color:var(--muted);max-width:34ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0;padding:0;list-style:none}
+.facts li{font-size:13px;padding:4px 10px;border-radius:99px;background:var(--sunk);color:var(--ink)}
+.cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.btn{appearance:none;border:0;cursor:pointer;border-radius:99px;padding:14px 26px;font-weight:600;font-size:16px;background:var(--rani);color:var(--rani-ink);transition:transform .12s ease}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.small{padding:9px 16px;font-size:14px}
+.link{appearance:none;background:none;border:0;padding:6px 2px;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* question */
+.q{display:grid;gap:14px}
+.q h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,7.5vw,42px);line-height:1.05;margin:0;text-wrap:balance}
+.q .hint{margin:-4px 0 0;color:var(--muted);font-size:15px}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.opt{appearance:none;cursor:pointer;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:var(--r);padding:14px 14px 13px;font-size:15.5px;font-weight:500;line-height:1.25;display:flex;gap:10px;align-items:center;min-height:56px;transition:border-color .15s,background .15s,transform .1s}
+.opt:hover{border-color:var(--rani)}
+.opt:active{transform:scale(.98)}
+.opt[aria-pressed="true"]{border-color:var(--rani);background:var(--rani-soft)}
+.opt .em{font-size:22px;line-height:1}
+.opt .tick{margin-left:auto;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);flex:none}
+.opt[aria-pressed="true"] .tick{background:var(--rani);border-color:var(--rani);box-shadow:inset 0 0 0 3px var(--surface)}
+.dial{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--line);border-radius:99px;padding:4px;background:var(--surface)}
+.dial .opt{border:0;border-radius:99px;justify-content:center;text-align:center;min-height:48px;background:transparent}
+.dial .opt[aria-pressed="true"]{background:var(--rani);color:var(--rani-ink)}
+.dial .opt .tick{display:none}
+.dial-scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding-inline:8px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px}
+.nav .right{display:flex;gap:10px;align-items:center}
+.count{font-size:13px;color:var(--muted)}
+
+/* results */
+.res-head{display:grid;gap:8px;padding-block:10px 18px}
+.res-head h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,8vw,48px);line-height:1;margin:0}
+.res-head p{margin:0;color:var(--muted)}
+.summary{display:flex;flex-wrap:wrap;gap:6px}
+.summary span{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.cards{display:grid;gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.swatch{display:flex;height:170px;position:relative}
+.band{position:relative;flex:1;min-width:28px}
+.band.hero{flex:3}
+.band.mid{flex:1.6}
+.band span{position:absolute;left:8px;bottom:8px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.88);color:#2B1631;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.rank{position:absolute;top:10px;left:10px;font-family:var(--display);font-size:20px;line-height:1;background:var(--surface);color:var(--rani);padding:6px 10px 4px;border-radius:10px}
+.card-body{padding:18px 18px 20px;display:grid;gap:14px}
+.card h3{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.1;margin:0;text-wrap:balance}
+.why{display:flex;flex-wrap:wrap;gap:6px}
+.why span{font-size:12.5px;padding:3px 10px;border-radius:99px;background:var(--marigold-soft);color:var(--ink)}
+.items{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.items li{display:grid;grid-template-columns:88px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.items .slot{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.items .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.tip{margin:0;font-size:15px;padding-left:12px;border-left:3px solid var(--marigold)}
+.tag{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:14px 16px 14px 14px;border:1.5px dashed var(--rani);border-radius:12px 12px 12px 30px;background:var(--rani-soft)}
+.tag .hole{width:16px;height:16px;border-radius:50%;background:var(--surface);border:1.5px solid var(--rani)}
+.tag b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--rani)}
+.tag strong{display:block;font-size:16px;font-weight:600}
+.tag p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.res-foot{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.example{margin-top:26px;display:grid;gap:10px}
+.example .eyebrow{display:flex;align-items:center;gap:8px}
+.example .eyebrow::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:99px;font-size:14px;z-index:20}
+.overlay{position:fixed;inset:0;background:rgba(23,13,27,.72);display:grid;place-items:center;padding:20px;z-index:30}
+.overlay .sheet{background:var(--surface);border-radius:18px;padding:16px;max-width:420px;width:100%;display:grid;gap:12px;max-height:92vh;overflow:auto}
+.overlay img{border-radius:10px;width:100%;height:auto;display:block}
+.overlay p{margin:0;font-size:14px;color:var(--muted);text-align:center}
+.privacy{margin-top:30px;font-size:13px;color:var(--muted);text-align:center;max-width:44ch;margin-inline:auto}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.fade{animation:fade .28s ease both}
+@keyframes fade{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="bar">
+    <div class="brand">toteaa<small>outfit quiz</small></div>
+    <div class="lock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Nothing is saved</span></div>
+  </header>
+  <div class="stitch" id="stitch" hidden><div class="done" id="done"></div><div class="needle" id="needle"></div></div>
+  <main id="app"></main>
+  <p class="privacy" id="privacy"></p>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script type="application/json" id="taxonomy-data">{"_about":"Controlled vocabulary for every outfit, item and quiz answer. Taggers (LLM or human) may ONLY use ids from this file.","version":"0.1.0","occasions":{"everyday":["college","office","wfh_call","errands","travel_airport","gym_to_cafe"],"social":["brunch","date_night","birthday_party","house_party","concert_gig","clubbing","movie_outing"],"wedding":["roka_engagement","haldi","mehendi","sangeet","cocktail","wedding_guest","reception"],"festival":["diwali","navratri_garba","durga_puja","holi","eid","raksha_bandhan","karva_chauth","onam","pongal","ganesh_chaturthi","lohri","christmas_newyear"],"family_religious":["temple_gurudwara","home_puja","family_dinner","rishta_meet"],"milestone":["farewell","college_fest","interview","first_day_work","graduation"]},"company":[{"id":"family","label":"Family / relatives","modesty_bias":2},{"id":"friends","label":"Friends only","modesty_bias":0},{"id":"colleagues","label":"Colleagues","modesty_bias":1},{"id":"date","label":"Date","modesty_bias":0},{"id":"mixed","label":"Everyone","modesty_bias":1}],"ethnic_dial":[{"id":"desi","label":"Full desi"},{"id":"indo_western","label":"Indo-western"},{"id":"western","label":"Full western"}],"vibes":[{"id":"main_character","label":"Main character"},{"id":"soft_cute","label":"Soft & cute"},{"id":"boss","label":"Boss energy"},{"id":"comfy","label":"Comfy / lazy"},{"id":"bold","label":"Bold & loud"},{"id":"minimal","label":"Clean minimal"},{"id":"boho","label":"Boho / artsy"},{"id":"old_money","label":"Old money"},{"id":"streetwear","label":"Streetwear"},{"id":"romantic","label":"Romantic"}],"weather":[{"id":"hot_humid","label":"Hot & sticky","bad_fabrics":["velvet","polyester","heavy_silk","wool"]},{"id":"dry_heat","label":"Dry heat","bad_fabrics":["velvet","wool"]},{"id":"monsoon","label":"Rainy","bad_fabrics":["velvet","raw_silk"],"bad_lengths":["floor"]},{"id":"pleasant","label":"Pleasant","bad_fabrics":[]},{"id":"cold","label":"Cold","bad_fabrics":["linen"]},{"id":"ac_indoors","label":"AC indoors","bad_fabrics":[]}],"budget":[{"id":"own_it","label":"Use what I have"},{"id":"under_1k","label":"Under ₹1,000","max_inr":1000},{"id":"1k_3k","label":"₹1,000–3,000","max_inr":3000},{"id":"3k_8k","label":"₹3,000–8,000","max_inr":8000},{"id":"splurge","label":"Splurge"}],"comfort_limits":[{"id":"no_dupatta","label":"No dupatta drama"},{"id":"flats_only","label":"Flats only"},{"id":"covered_shoulders","label":"Covered shoulders"},{"id":"below_knee","label":"Below the knee"},{"id":"pockets","label":"Need pockets"},{"id":"easy_to_dance","label":"Easy to dance in"},{"id":"no_sheer","label":"Nothing sheer"}],"undertone":[{"id":"warm","flattering":["mustard","terracotta","rust","peach","olive","teal","coral","gold"]},{"id":"cool","flattering":["royal_blue","magenta","emerald","lavender","wine","silver","icy_pink"]},{"id":"neutral","flattering":["emerald","royal_blue","teal","wine","ivory","blush"]},{"id":"skip","flattering":[]}],"universal_colours":["emerald","royal_blue","teal","wine","ivory"],"garments":{"ethnic_top":["kurta","kurti","short_kurti","anarkali","choli","blouse","corset_blouse","kaftan"],"ethnic_bottom":["salwar","churidar","palazzo","sharara","gharara","dhoti_pants","lehenga_skirt","straight_pants"],"ethnic_full":["saree","pre_draped_saree","lehenga_set","anarkali_set","sharara_set","kurta_set","gown","half_saree","kasavu_saree"],"western_top":["tshirt","graphic_tee","shirt","crop_top","tank","corset_top","blouse_western","sweater","hoodie"],"western_bottom":["wide_leg_jeans","straight_jeans","cargo","trousers","skirt_mini","skirt_midi","skirt_maxi","shorts"],"western_full":["dress_mini","dress_midi","dress_maxi","jumpsuit","coord_set"],"layer":["dupatta","shrug","denim_jacket","blazer","ethnic_jacket","cardigan","shawl","cape"],"footwear":["sneakers","juttis","kolhapuris","block_heels","stilettos","flats","sandals","loafers","boots","mojari"],"jewellery":["jhumkas","oxidised_silver","kundan","temple_jewellery","chandbalis","studs","hoops","layered_chains","maang_tikka","bangles","nose_pin","anklet"],"bag":["tote","potli","clutch","sling","backpack","mini_bag"]},"fabrics":["cotton","linen","chikankari","mulmul","chanderi","georgette","chiffon","organza","crepe","rayon","silk","heavy_silk","raw_silk","banarasi","velvet","denim","polyester","khadi","wool","satin","net"],"breathable_fabrics":["cotton","linen","chikankari","mulmul","khadi","chanderi","rayon"],"prints_work":["solid","floral","block_print","bandhani","leheriya","ikat","kalamkari","ajrakh","chikankari_embroidery","mirror_work","gota_patti","zari","sequins","phulkari","stripes","checks","graphic","polka"],"colours":["white","ivory","beige","black","grey","navy","royal_blue","sky_blue","teal","emerald","mint","olive","sage","yellow","mustard","orange","rust","terracotta","coral","peach","red","maroon","wine","magenta","pink","blush","icy_pink","lavender","purple","gold","silver","brown"],"modesty_level":{"_about":"0 = revealing, 3 = fully covered. Derived from sleeve/neck/length.","values":[0,1,2,3]},"occasion_colour_rules":{"haldi":{"prefer":["yellow","mustard","orange","peach"],"avoid":["white"]},"mehendi":{"prefer":["emerald","mint","olive","teal","sage"],"avoid":[]},"sangeet":{"prefer":["emerald","wine","navy","purple","magenta"],"avoid":[]},"wedding_guest":{"prefer":["emerald","royal_blue","magenta","pink","blush","mint","lavender"],"avoid":["white","black","red"]},"holi":{"prefer":["white","ivory"],"avoid":[]},"karva_chauth":{"prefer":["red","maroon","pink"],"avoid":["black","white"]},"onam":{"prefer":["ivory","gold"],"avoid":[]},"diwali":{"prefer":["gold","red","yellow","magenta","emerald"],"avoid":["black"]}},"festival_calendar":{"_about":"Fill yearly from a panchang (e.g. drikpanchang.com). Used to auto-suggest 'colour of the day'.","navratri_2026":{"start":"2026-09-24","end":"2026-10-02","day_colours":[]}},"trend_tags":{"_about":"Refresh monthly from Google Trends IN / manual Instagram research.","updated":"2026-09","values":["coord_set","chikankari_coord","corset_blouse_saree","lehenga_skirt_with_shirt","sneakers_with_ethnic","kurta_with_denim_jacket","oversized_tee_wide_leg","sharara_coord","pre_draped_saree","old_money_ethnic"]}}</script>
+<script type="application/json" id="quiz-data">{"_about":"Phase 1 quiz flow. 7 taps, all visual chips. Answers stay in sessionStorage only. `maps_to` = taxonomy key the answer scores against.","version":"0.1.0","privacy_banner":"Nothing you pick is saved. Close the tab and it's gone. 🤍","questions":[{"id":"occasion_group","prompt":"Where are you off to?","type":"single","maps_to":"occasions","options":[{"id":"everyday","label":"College / office / daily","emoji":"🎒"},{"id":"social","label":"Going out","emoji":"🥂"},{"id":"wedding","label":"Shaadi function","emoji":"💍"},{"id":"festival","label":"Festival","emoji":"🪔"},{"id":"family_religious","label":"Family / temple","emoji":"🙏"},{"id":"milestone","label":"Big day (farewell, interview…)","emoji":"🎓"}]},{"id":"occasion","prompt":"Which one exactly?","type":"single","maps_to":"occasions","options_from":"taxonomy.occasions[answers.occasion_group]"},{"id":"company","prompt":"Who'll be there?","hint":"Helps us get the coverage right, no judgement.","type":"single","maps_to":"company"},{"id":"ethnic_dial","prompt":"Desi, western or somewhere in between?","type":"slider3","maps_to":"ethnic_dial"},{"id":"vibe","prompt":"Pick your vibe today","type":"multi","max":2,"maps_to":"vibes"},{"id":"weather","prompt":"What's the weather doing?","type":"single","maps_to":"weather"},{"id":"limits","prompt":"Any deal-breakers?","type":"multi","optional":true,"maps_to":"comfort_limits"},{"id":"budget","prompt":"Budget?","type":"single","optional":true,"maps_to":"budget"},{"id":"undertone","prompt":"Want colours picked for your skin undertone?","hint":"Check your wrist veins in daylight: green-ish = warm, blue/purple = cool, can't tell = neutral.","type":"single","optional":true,"maps_to":"undertone"}],"scoring":{"weights":{"occasion":3,"ethnic_dial":2,"vibe":2,"weather":1.5,"company":1.5,"budget":1,"limits":1,"undertone":0.75},"bonuses":{"festival_colour_today":1,"trending":0.5,"occasion_colour_prefer":1},"penalties":{"occasion_colour_avoid":-2},"hard_filters":["limits","weather.bad_fabrics","weather.bad_lengths","budget.max_inr"],"results":{"count":3,"diversify_by":"hero_garment"}},"result_card":{"shows":["outfit_image","title","items","styling_tip","tote_pairing","accessory_pairing","why_this"],"actions":["save_png_locally","web_share","shop_tote","retake"]}}</script>
+<script type="application/json" id="outfits-data">[{"id":"of_haldi_mustard_sharara","title":"Mustard mulmul sharara, haldi-proof","occasions":["haldi"],"ethnic_dial":"desi","vibes":["soft_cute","comfy"],"company_fit":["family","mixed"],"weather_fit":["hot_humid","dry_heat","pleasant"],"palette":["mustard","white","gold"],"modesty_level":2,"comfort":["flats_only","easy_to_dance","no_dupatta"],"price_band_inr":[1500,3500],"trend_tags":["sharara_coord"],"items":[{"slot":"top","garment":"short_kurti","colour":"mustard","fabric":"mulmul","print":"gota_patti","length":"hip"},{"slot":"bottom","garment":"sharara","colour":"mustard","fabric":"mulmul","length":"ankle"},{"slot":"footwear","garment":"kolhapuris","colour":"gold"},{"slot":"jewellery","garment":"jhumkas","colour":"gold"}],"styling_tip":"Skip the dupatta. Turmeric stains won't show on mustard, and you can actually dance.","tote_pairing":{"sku":"TBD","style":"Ivory canvas tote","reason":"Ivory canvas tote to hold the haldi bowls, and it won't clash with yellow"},"accessory_pairing":["floral hair clip"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_mehendi_mint_lehenga_shirt","title":"Mint lehenga skirt + white shirt","occasions":["mehendi","roka_engagement"],"ethnic_dial":"indo_western","vibes":["main_character","romantic"],"company_fit":["friends","mixed","family"],"weather_fit":["pleasant","ac_indoors","dry_heat"],"palette":["mint","white","silver"],"modesty_level":2,"comfort":["no_dupatta","covered_shoulders","below_knee"],"price_band_inr":[2500,6000],"trend_tags":["lehenga_skirt_with_shirt"],"items":[{"slot":"top","garment":"shirt","colour":"white","fabric":"cotton"},{"slot":"bottom","garment":"lehenga_skirt","colour":"mint","fabric":"georgette","print":"floral","length":"floor"},{"slot":"footwear","garment":"juttis","colour":"silver"},{"slot":"jewellery","garment":"oxidised_silver","colour":"silver"}],"styling_tip":"Knot the shirt at the waist and roll the sleeves, so your mehendi hands are the hero.","tote_pairing":{"sku":"TBD","style":"Pastel floral tote","reason":"Pastel floral tote goes with the mehendi-garden vibe"},"accessory_pairing":["silver jhumkas"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_sangeet_wine_sequin","title":"Wine sequin lehenga for sangeet","occasions":["sangeet","cocktail","reception"],"ethnic_dial":"desi","vibes":["main_character","bold"],"company_fit":["friends","mixed"],"weather_fit":["pleasant","cold","ac_indoors"],"palette":["wine","gold"],"modesty_level":1,"comfort":["easy_to_dance"],"price_band_inr":[6000,15000],"trend_tags":[],"items":[{"slot":"full","garment":"lehenga_set","colour":"wine","fabric":"georgette","print":"sequins","length":"floor"},{"slot":"footwear","garment":"block_heels","colour":"gold"},{"slot":"jewellery","garment":"chandbalis","colour":"gold"},{"slot":"bag","garment":"potli","colour":"gold"}],"styling_tip":"Sequins catch the stage lights. Keep the jewellery to just statement earrings.","tote_pairing":{"sku":"TBD","style":"Sneaker-swap tote","reason":"Bring a tote for your sneaker switch after the performance"},"accessory_pairing":["gold potli"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_college_oversized_tee","title":"Oversized graphic tee + wide-leg denims","occasions":["college","errands","movie_outing","travel_airport"],"ethnic_dial":"western","vibes":["comfy","streetwear"],"company_fit":["friends","mixed"],"weather_fit":["pleasant","ac_indoors","dry_heat"],"palette":["white","sky_blue","black"],"modesty_level":2,"comfort":["flats_only","pockets","covered_shoulders"],"price_band_inr":[800,2500],"trend_tags":["oversized_tee_wide_leg"],"items":[{"slot":"top","garment":"graphic_tee","colour":"white","fabric":"cotton"},{"slot":"bottom","garment":"wide_leg_jeans","colour":"sky_blue","fabric":"denim","length":"ankle"},{"slot":"footwear","garment":"sneakers","colour":"white"},{"slot":"jewellery","garment":"hoops","colour":"silver"}],"styling_tip":"Front-tuck the tee so it doesn't swallow you.","tote_pairing":{"sku":"TBD","style":"Quirky printed tote","reason":"Quirky printed tote that fits a laptop, and it's the loudest thing you're wearing"},"accessory_pairing":["claw clip"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_office_chikankari_trousers","title":"Chikankari shirt + tailored trousers","occasions":["office","brunch","interview","first_day_work"],"ethnic_dial":"indo_western","vibes":["minimal","boss","old_money"],"company_fit":["colleagues","family","mixed"],"weather_fit":["hot_humid","dry_heat","pleasant","ac_indoors"],"palette":["ivory","beige"],"modesty_level":3,"comfort":["no_dupatta","flats_only","covered_shoulders","below_knee","pockets","no_sheer"],"price_band_inr":[1800,4500],"trend_tags":["old_money_ethnic"],"items":[{"slot":"top","garment":"shirt","colour":"ivory","fabric":"chikankari","print":"chikankari_embroidery"},{"slot":"bottom","garment":"trousers","colour":"beige","fabric":"linen","length":"ankle"},{"slot":"footwear","garment":"loafers","colour":"brown"},{"slot":"jewellery","garment":"studs","colour":"gold"}],"styling_tip":"Wear a camisole under the chikankari, and add a thin gold chain for the old-money look.","tote_pairing":{"sku":"TBD","style":"Structured neutral tote","reason":"Structured neutral tote that holds a laptop and goes with a boardroom"},"accessory_pairing":["thin gold chain","watch"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_farewell_black_saree","title":"Pre-draped black saree + corset blouse","occasions":["farewell","cocktail","college_fest"],"ethnic_dial":"indo_western","vibes":["main_character","bold"],"company_fit":["friends","mixed"],"weather_fit":["pleasant","ac_indoors","cold"],"palette":["black","silver"],"modesty_level":1,"comfort":["easy_to_dance","no_dupatta"],"price_band_inr":[2500,7000],"trend_tags":["corset_blouse_saree","pre_draped_saree"],"items":[{"slot":"full","garment":"pre_draped_saree","colour":"black","fabric":"georgette","print":"sequins","length":"floor"},{"slot":"top","garment":"corset_blouse","colour":"black","fabric":"satin"},{"slot":"footwear","garment":"block_heels","colour":"silver"},{"slot":"jewellery","garment":"chandbalis","colour":"silver"}],"styling_tip":"Pre-draped means no safety-pin panic. Swap to sneakers for the dance floor.","tote_pairing":{"sku":"TBD","style":"Black & white illustrated tote","reason":"Black-and-white illustrated tote for the sneaker and makeup kit"},"accessory_pairing":["silver bangles"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_garba_mirror_chaniya","title":"Mirror-work chaniya choli for garba","occasions":["navratri_garba"],"ethnic_dial":"desi","vibes":["bold","main_character"],"company_fit":["friends","family","mixed"],"weather_fit":["hot_humid","pleasant","dry_heat"],"palette":["red","orange","emerald"],"modesty_level":1,"comfort":["easy_to_dance","flats_only"],"price_band_inr":[1500,5000],"trend_tags":[],"items":[{"slot":"full","garment":"lehenga_set","colour":"red","fabric":"cotton","print":"mirror_work","length":"ankle"},{"slot":"layer","garment":"dupatta","colour":"emerald","print":"bandhani"},{"slot":"footwear","garment":"mojari","colour":"gold"},{"slot":"jewellery","garment":"oxidised_silver","colour":"silver"}],"styling_tip":"Ankle-length so you don't trip on the spins. Pin the dupatta at the shoulder AND the waist.","tote_pairing":{"sku":"TBD","style":"Bright folk-art tote","reason":"Bright tote for a water bottle and spare bindis"},"accessory_pairing":["oxidised kamarbandh","anklet"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_brunch_linen_coord","title":"Sage linen co-ord set","occasions":["brunch","date_night","travel_airport","wfh_call"],"ethnic_dial":"western","vibes":["minimal","soft_cute","old_money"],"company_fit":["friends","date","family","colleagues"],"weather_fit":["hot_humid","dry_heat","pleasant"],"palette":["sage","white"],"modesty_level":2,"comfort":["flats_only","no_dupatta","pockets"],"price_band_inr":[1500,3500],"trend_tags":["coord_set"],"items":[{"slot":"full","garment":"coord_set","colour":"sage","fabric":"linen","length":"ankle"},{"slot":"footwear","garment":"sandals","colour":"beige"},{"slot":"jewellery","garment":"layered_chains","colour":"gold"}],"styling_tip":"Leave the shirt half open over a white tank and you're ready for Goa.","tote_pairing":{"sku":"TBD","style":"Natural canvas tote","reason":"Natural canvas tote. It's the whole beach-brunch look"},"accessory_pairing":["sunglasses"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_diwali_kurta_denim_jacket","title":"Short kurta + dhoti pants + denim jacket","occasions":["diwali","college_fest","family_dinner"],"ethnic_dial":"indo_western","vibes":["streetwear","boho"],"company_fit":["friends","family","mixed"],"weather_fit":["pleasant","cold"],"palette":["magenta","navy","gold"],"modesty_level":3,"comfort":["no_dupatta","flats_only","covered_shoulders","below_knee"],"price_band_inr":[2000,5000],"trend_tags":["kurta_with_denim_jacket","sneakers_with_ethnic"],"items":[{"slot":"top","garment":"short_kurti","colour":"magenta","fabric":"silk","print":"zari","length":"hip"},{"slot":"bottom","garment":"dhoti_pants","colour":"gold","fabric":"silk"},{"slot":"layer","garment":"denim_jacket","colour":"navy","fabric":"denim"},{"slot":"footwear","garment":"sneakers","colour":"white"},{"slot":"jewellery","garment":"jhumkas","colour":"gold"}],"styling_tip":"Denim over zari makes it look like you tried AND like you didn't. Keep the jacket off near diyas.","tote_pairing":{"sku":"TBD","style":"Festive-print tote","reason":"Festive-print tote for mithai boxes on the round of house visits"},"accessory_pairing":["bangles"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_temple_cotton_anarkali","title":"Block-print cotton anarkali","occasions":["temple_gurudwara","home_puja","rishta_meet","raksha_bandhan","family_dinner"],"ethnic_dial":"desi","vibes":["soft_cute","romantic"],"company_fit":["family"],"weather_fit":["hot_humid","dry_heat","pleasant"],"palette":["peach","white"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","below_knee","no_sheer"],"price_band_inr":[900,2500],"trend_tags":[],"items":[{"slot":"full","garment":"anarkali_set","colour":"peach","fabric":"cotton","print":"block_print","length":"ankle"},{"slot":"layer","garment":"dupatta","colour":"white","fabric":"mulmul"},{"slot":"footwear","garment":"juttis","colour":"gold"},{"slot":"jewellery","garment":"jhumkas","colour":"silver"}],"styling_tip":"Wear the dupatta on one side so it's easy to cover your head at the gurudwara.","tote_pairing":{"sku":"TBD","style":"Soft pastel tote","reason":"Soft pastel tote big enough for prasad and slippers"},"accessory_pairing":["small bindi"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_club_satin_midi","title":"Black satin midi + statement hoops","occasions":["clubbing","cocktail","date_night","christmas_newyear"],"ethnic_dial":"western","vibes":["bold","main_character"],"company_fit":["friends","date"],"weather_fit":["pleasant","ac_indoors","cold"],"palette":["black","gold"],"modesty_level":1,"comfort":["easy_to_dance","no_dupatta"],"price_band_inr":[1200,3500],"trend_tags":[],"items":[{"slot":"full","garment":"dress_midi","colour":"black","fabric":"satin","print":"solid","length":"midi"},{"slot":"footwear","garment":"block_heels","colour":"black"},{"slot":"jewellery","garment":"hoops","colour":"gold"},{"slot":"bag","garment":"mini_bag","colour":"gold"}],"styling_tip":"Block heels over stilettos. You'll still be standing at 2am.","tote_pairing":{"sku":"TBD","style":"Black illustrated tote","reason":"Leave it in the car with the flats for the ride home"},"accessory_pairing":["red lip"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_concert_corset_cargo","title":"Corset top + olive cargos + boots","occasions":["concert_gig","college_fest","house_party"],"ethnic_dial":"western","vibes":["streetwear","bold"],"company_fit":["friends"],"weather_fit":["pleasant","ac_indoors","dry_heat"],"palette":["black","olive"],"modesty_level":1,"comfort":["pockets","flats_only","easy_to_dance"],"price_band_inr":[1500,4000],"trend_tags":[],"items":[{"slot":"top","garment":"corset_top","colour":"black","fabric":"denim"},{"slot":"bottom","garment":"cargo","colour":"olive","fabric":"cotton","length":"ankle"},{"slot":"footwear","garment":"boots","colour":"black"},{"slot":"jewellery","garment":"layered_chains","colour":"silver"}],"styling_tip":"Cargo pockets = no bag in the mosh pit. Phone, card, lip balm, done.","tote_pairing":{"sku":"TBD","style":"Band-poster print tote","reason":"For merch you'll definitely buy"},"accessory_pairing":["silver rings"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_date_floral_midi","title":"Blush floral midi dress","occasions":["date_night","brunch","birthday_party"],"ethnic_dial":"western","vibes":["romantic","soft_cute"],"company_fit":["date","friends","family"],"weather_fit":["pleasant","dry_heat","hot_humid"],"palette":["blush","sage"],"modesty_level":2,"comfort":["flats_only","below_knee","no_dupatta"],"price_band_inr":[1000,3000],"trend_tags":[],"items":[{"slot":"full","garment":"dress_midi","colour":"blush","fabric":"chiffon","print":"floral","length":"midi"},{"slot":"footwear","garment":"sandals","colour":"beige"},{"slot":"jewellery","garment":"studs","colour":"gold"}],"styling_tip":"Add a tiny bow in the hair and let the dress do the talking.","tote_pairing":{"sku":"TBD","style":"Book-lover tote","reason":"Cute enough for the date, big enough for the bookstore after"},"accessory_pairing":["hair bow"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_eid_lavender_sharara","title":"Lavender chikankari sharara set","occasions":["eid","family_dinner","roka_engagement"],"ethnic_dial":"desi","vibes":["soft_cute","romantic"],"company_fit":["family","mixed"],"weather_fit":["hot_humid","dry_heat","pleasant"],"palette":["lavender","silver"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","below_knee"],"price_band_inr":[2500,6000],"trend_tags":["chikankari_coord"],"items":[{"slot":"full","garment":"sharara_set","colour":"lavender","fabric":"georgette","print":"chikankari_embroidery","length":"ankle"},{"slot":"layer","garment":"dupatta","colour":"lavender","fabric":"organza"},{"slot":"footwear","garment":"juttis","colour":"silver"},{"slot":"jewellery","garment":"chandbalis","colour":"silver"}],"styling_tip":"Silver chandbalis over gold. Pastels glow with cool metals.","tote_pairing":{"sku":"TBD","style":"Pastel embroidered tote","reason":"Holds all the Eidi envelopes"},"accessory_pairing":["attar"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_holi_white_kurta_denim","title":"White kurta + old denims","occasions":["holi"],"ethnic_dial":"indo_western","vibes":["comfy","boho"],"company_fit":["friends","family","mixed"],"weather_fit":["dry_heat","hot_humid","pleasant"],"palette":["white","sky_blue"],"modesty_level":3,"comfort":["no_dupatta","flats_only","covered_shoulders","below_knee","no_sheer"],"price_band_inr":[500,1500],"trend_tags":[],"items":[{"slot":"top","garment":"kurta","colour":"white","fabric":"cotton","length":"knee"},{"slot":"bottom","garment":"straight_jeans","colour":"sky_blue","fabric":"denim","length":"ankle"},{"slot":"footwear","garment":"flats","colour":"white"}],"styling_tip":"Oil your hair and arms first. Wear jeans you've already given up on.","tote_pairing":{"sku":"TBD","style":"Washable canvas tote","reason":"Gulaal-proof, and it goes straight in the washing machine"},"accessory_pairing":["sunglasses"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_onam_kasavu","title":"Kasavu saree + temple jewellery","occasions":["onam","temple_gurudwara","home_puja"],"ethnic_dial":"desi","vibes":["minimal","old_money"],"company_fit":["family","mixed","colleagues"],"weather_fit":["hot_humid","pleasant","monsoon"],"palette":["ivory","gold"],"modesty_level":2,"comfort":["flats_only","no_dupatta"],"price_band_inr":[1500,5000],"trend_tags":[],"items":[{"slot":"full","garment":"kasavu_saree","colour":"ivory","fabric":"cotton","print":"zari","length":"ankle"},{"slot":"top","garment":"blouse","colour":"gold","fabric":"silk"},{"slot":"footwear","garment":"sandals","colour":"gold"},{"slot":"jewellery","garment":"temple_jewellery","colour":"gold"}],"styling_tip":"Jasmine in the hair finishes the look. Try a contrast green blouse for a modern twist.","tote_pairing":{"sku":"TBD","style":"Natural cotton tote","reason":"For the sadya leftovers your aunt insists you take"},"accessory_pairing":["jasmine gajra"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_monsoon_rayon_set","title":"Printed rayon short kurti + cropped pants","occasions":["college","office","errands"],"ethnic_dial":"desi","vibes":["comfy","minimal"],"company_fit":["colleagues","friends","family","mixed"],"weather_fit":["monsoon","hot_humid"],"palette":["teal","white"],"modesty_level":3,"comfort":["no_dupatta","flats_only","covered_shoulders","pockets","no_sheer"],"price_band_inr":[700,1800],"trend_tags":[],"items":[{"slot":"top","garment":"short_kurti","colour":"teal","fabric":"rayon","print":"block_print","length":"hip"},{"slot":"bottom","garment":"straight_pants","colour":"white","fabric":"rayon","length":"ankle"},{"slot":"footwear","garment":"sandals","colour":"black"}],"styling_tip":"Ankle-length hems stay out of puddles. Rayon dries fast between showers.","tote_pairing":{"sku":"TBD","style":"Dark printed tote","reason":"Hides the rain splashes, and the umbrella fits inside"},"accessory_pairing":["compact umbrella"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_winter_velvet_anarkali","title":"Emerald velvet anarkali","occasions":["wedding_guest","reception","lohri","christmas_newyear"],"ethnic_dial":"desi","vibes":["main_character","old_money"],"company_fit":["family","mixed"],"weather_fit":["cold","ac_indoors"],"palette":["emerald","gold"],"modesty_level":3,"comfort":["covered_shoulders","below_knee","no_sheer"],"price_band_inr":[4000,12000],"trend_tags":[],"items":[{"slot":"full","garment":"anarkali_set","colour":"emerald","fabric":"velvet","print":"zari","length":"floor"},{"slot":"layer","garment":"shawl","colour":"gold"},{"slot":"footwear","garment":"block_heels","colour":"gold"},{"slot":"jewellery","garment":"kundan","colour":"gold"}],"styling_tip":"Velvet is warm enough that the shawl is for show. Wear kundan and skip the necklace.","tote_pairing":{"sku":"TBD","style":"Jewel-tone tote","reason":"For the shagun envelope and a spare pashmina"},"accessory_pairing":["kundan maang tikka"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_karva_red_banarasi","title":"Red Banarasi saree","occasions":["karva_chauth","diwali"],"ethnic_dial":"desi","vibes":["romantic","main_character"],"company_fit":["family","mixed"],"weather_fit":["pleasant","cold","ac_indoors"],"palette":["red","gold"],"modesty_level":2,"comfort":["no_dupatta"],"price_band_inr":[3000,15000],"trend_tags":[],"items":[{"slot":"full","garment":"saree","colour":"red","fabric":"banarasi","print":"zari","length":"floor"},{"slot":"top","garment":"blouse","colour":"gold","fabric":"silk"},{"slot":"footwear","garment":"mojari","colour":"gold"},{"slot":"jewellery","garment":"bangles","colour":"gold"}],"styling_tip":"Borrow Mum's Banarasi and style it with a modern backless blouse.","tote_pairing":{"sku":"TBD","style":"Festive gold-print tote","reason":"Carries the thali, the sieve and the snacks for after moonrise"},"accessory_pairing":["red bindi","sindoor-red nails"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_puja_laal_paar","title":"White saree with red border (laal paar)","occasions":["durga_puja","home_puja","temple_gurudwara"],"ethnic_dial":"desi","vibes":["minimal","old_money"],"company_fit":["family","mixed"],"weather_fit":["hot_humid","pleasant"],"palette":["white","red"],"modesty_level":2,"comfort":["flats_only","no_dupatta"],"price_band_inr":[800,4000],"trend_tags":[],"items":[{"slot":"full","garment":"saree","colour":"white","fabric":"cotton","print":"solid","length":"ankle"},{"slot":"top","garment":"blouse","colour":"red","fabric":"cotton"},{"slot":"footwear","garment":"flats","colour":"red"},{"slot":"jewellery","garment":"bangles","colour":"red"}],"styling_tip":"A big red bindi and kohl-lined eyes. Pandal-hopping all night in cotton.","tote_pairing":{"sku":"TBD","style":"Red-and-white tote","reason":"For the bhog and all the pandal-hopping snacks"},"accessory_pairing":["shakha-pola bangles"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_airport_hoodie","title":"Oversized hoodie + straight jeans","occasions":["travel_airport","gym_to_cafe","errands","movie_outing"],"ethnic_dial":"western","vibes":["comfy","streetwear"],"company_fit":["friends","family","mixed"],"weather_fit":["cold","ac_indoors","pleasant"],"palette":["grey","navy","white"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","pockets","no_dupatta","no_sheer"],"price_band_inr":[1000,3000],"trend_tags":[],"items":[{"slot":"top","garment":"hoodie","colour":"grey","fabric":"cotton"},{"slot":"bottom","garment":"straight_jeans","colour":"navy","fabric":"denim","length":"ankle"},{"slot":"footwear","garment":"sneakers","colour":"white"}],"styling_tip":"Slip-on sneakers get through airport security faster.","tote_pairing":{"sku":"TBD","style":"Zip-top travel tote","reason":"Works as a cabin tote: passport, Kindle, snacks"},"accessory_pairing":["cap"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_interview_blazer","title":"Navy blazer + white blouse + trousers","occasions":["interview","office","first_day_work","graduation"],"ethnic_dial":"western","vibes":["boss","minimal","old_money"],"company_fit":["colleagues","family","mixed"],"weather_fit":["ac_indoors","pleasant","cold"],"palette":["navy","white"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","below_knee","pockets","no_dupatta","no_sheer"],"price_band_inr":[2500,7000],"trend_tags":[],"items":[{"slot":"layer","garment":"blazer","colour":"navy","fabric":"crepe"},{"slot":"top","garment":"blouse_western","colour":"white","fabric":"crepe"},{"slot":"bottom","garment":"trousers","colour":"navy","fabric":"crepe","length":"ankle"},{"slot":"footwear","garment":"loafers","colour":"black"}],"styling_tip":"One piece of jewellery, max. Let your CV be the loud part.","tote_pairing":{"sku":"TBD","style":"Structured laptop tote","reason":"Fits a laptop and printed CVs without creasing them"},"accessory_pairing":["watch"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_ganpati_yellow_set","title":"Marigold cotton kurta set","occasions":["ganesh_chaturthi","pongal","home_puja","temple_gurudwara","raksha_bandhan"],"ethnic_dial":"desi","vibes":["soft_cute","comfy"],"company_fit":["family","mixed"],"weather_fit":["hot_humid","monsoon","pleasant"],"palette":["yellow","orange","white"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","below_knee","no_sheer"],"price_band_inr":[800,2200],"trend_tags":[],"items":[{"slot":"full","garment":"kurta_set","colour":"yellow","fabric":"cotton","print":"bandhani","length":"ankle"},{"slot":"layer","garment":"dupatta","colour":"orange","fabric":"mulmul"},{"slot":"footwear","garment":"kolhapuris","colour":"brown"},{"slot":"jewellery","garment":"jhumkas","colour":"gold"}],"styling_tip":"A mulmul dupatta won't stick to you in the humidity during aarti.","tote_pairing":{"sku":"TBD","style":"Marigold print tote","reason":"Modak boxes fit perfectly"},"accessory_pairing":["gajra"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_lohri_phulkari","title":"Black suit + phulkari dupatta","occasions":["lohri","family_dinner"],"ethnic_dial":"desi","vibes":["bold","main_character"],"company_fit":["family","friends","mixed"],"weather_fit":["cold"],"palette":["black","magenta","orange"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","below_knee","easy_to_dance"],"price_band_inr":[1500,4500],"trend_tags":[],"items":[{"slot":"full","garment":"kurta_set","colour":"black","fabric":"wool","length":"knee"},{"slot":"layer","garment":"dupatta","colour":"magenta","print":"phulkari"},{"slot":"footwear","garment":"juttis","colour":"gold"},{"slot":"jewellery","garment":"jhumkas","colour":"gold"}],"styling_tip":"Let the phulkari be the hero. Keep a woollen layer under it for the bonfire.","tote_pairing":{"sku":"TBD","style":"Bright folk-art tote","reason":"For the rewri, gajak and popcorn"},"accessory_pairing":["paranda"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_christmas_sweater_midi","title":"Red sweater + checked midi skirt","occasions":["christmas_newyear","brunch","family_dinner"],"ethnic_dial":"western","vibes":["soft_cute","old_money"],"company_fit":["family","friends","mixed"],"weather_fit":["cold","ac_indoors"],"palette":["red","beige","brown"],"modesty_level":3,"comfort":["flats_only","covered_shoulders","below_knee","no_dupatta"],"price_band_inr":[1500,4000],"trend_tags":[],"items":[{"slot":"top","garment":"sweater","colour":"red","fabric":"wool"},{"slot":"bottom","garment":"skirt_midi","colour":"beige","fabric":"wool","print":"checks","length":"midi"},{"slot":"footwear","garment":"boots","colour":"brown"},{"slot":"jewellery","garment":"studs","colour":"gold"}],"styling_tip":"Tuck the sweater in at the front only, and wear boots with thick socks.","tote_pairing":{"sku":"TBD","style":"Winter-print tote","reason":"For gifts for the Secret Santa exchange"},"accessory_pairing":["beret"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}},{"id":"of_party_sequin_mini","title":"Silver sequin mini dress","occasions":["birthday_party","house_party","clubbing","christmas_newyear"],"ethnic_dial":"western","vibes":["bold","main_character"],"company_fit":["friends","date"],"weather_fit":["pleasant","ac_indoors","dry_heat"],"palette":["silver","black"],"modesty_level":0,"comfort":["easy_to_dance","no_dupatta"],"price_band_inr":[1500,4000],"trend_tags":[],"items":[{"slot":"full","garment":"dress_mini","colour":"silver","fabric":"net","print":"sequins","length":"crop"},{"slot":"footwear","garment":"block_heels","colour":"black"},{"slot":"jewellery","garment":"studs","colour":"silver"}],"styling_tip":"The dress is the jewellery. Keep hair sleek and earrings small.","tote_pairing":{"sku":"TBD","style":"Glitter-print tote","reason":"For the birthday gift and a spare pair of flats"},"accessory_pairing":["silver clutch"],"source":{"type":"curated"},"review":{"tagged_by":"human","approved":false}}]</script>
+<script>
+(function(){
+const TAX = JSON.parse(document.getElementById('taxonomy-data').textContent);
+const QUIZ = JSON.parse(document.getElementById('quiz-data').textContent);
+const OUTFITS = JSON.parse(document.getElementById('outfits-data').textContent);
+const app = document.getElementById('app');
+document.getElementById('privacy').textContent = QUIZ.privacy_banner;
+
+/* ---------- labels ---------- */
+const LABEL = {
+  wfh_call:"WFH video call", travel_airport:"Travel / airport", gym_to_cafe:"Gym → café", errands:"Running errands",
+  brunch:"Brunch", date_night:"Date night", birthday_party:"Birthday party", house_party:"House party", concert_gig:"Concert / gig", movie_outing:"Movie outing",
+  roka_engagement:"Roka / engagement", haldi:"Haldi", mehendi:"Mehendi", sangeet:"Sangeet", cocktail:"Cocktail night", wedding_guest:"Wedding day", reception:"Reception",
+  diwali:"Diwali", navratri_garba:"Navratri / garba", durga_puja:"Durga Puja", holi:"Holi", eid:"Eid", raksha_bandhan:"Raksha Bandhan", karva_chauth:"Karva Chauth", onam:"Onam", pongal:"Pongal", ganesh_chaturthi:"Ganesh Chaturthi", lohri:"Lohri", christmas_newyear:"Christmas / New Year",
+  temple_gurudwara:"Temple / gurudwara", home_puja:"Puja at home", family_dinner:"Family dinner", rishta_meet:"Meeting the rishta family",
+  farewell:"Farewell", college_fest:"College fest", interview:"Interview", first_day_work:"First day at work", graduation:"Graduation",
+  tshirt:"T-shirt", graphic_tee:"Graphic tee", coord_set:"Co-ord set", dress_midi:"Midi dress", dress_mini:"Mini dress", dress_maxi:"Maxi dress",
+  blouse_western:"Blouse", skirt_midi:"Midi skirt", skirt_mini:"Mini skirt", skirt_maxi:"Maxi skirt", wide_leg_jeans:"Wide-leg jeans", straight_jeans:"Straight jeans",
+  pre_draped_saree:"Pre-draped saree", kasavu_saree:"Kasavu saree", lehenga_set:"Lehenga", lehenga_skirt:"Lehenga skirt", anarkali_set:"Anarkali set", sharara_set:"Sharara set", kurta_set:"Kurta set",
+  short_kurti:"Short kurti", corset_blouse:"Corset blouse", corset_top:"Corset top", dhoti_pants:"Dhoti pants", straight_pants:"Straight pants", denim_jacket:"Denim jacket", ethnic_jacket:"Ethnic jacket",
+  block_heels:"Block heels", oxidised_silver:"Oxidised silver", temple_jewellery:"Temple jewellery", layered_chains:"Layered chains", maang_tikka:"Maang tikka", nose_pin:"Nose pin", mini_bag:"Mini bag",
+  chikankari_embroidery:"chikankari", mirror_work:"mirror work", gota_patti:"gota patti", block_print:"block print",
+  royal_blue:"royal blue", sky_blue:"sky blue", icy_pink:"icy pink",
+  warm:"Warm · green-ish veins", cool:"Cool · blue/purple veins", neutral:"Neutral · can't tell", skip:"Skip this",
+  everyday:"Daily", social:"Going out", wedding:"Shaadi", festival:"Festival", family_religious:"Family / temple", milestone:"Big day"
+};
+const human = id => LABEL[id] || (id.charAt(0).toUpperCase()+id.slice(1).replace(/_/g,' '));
+const lower = id => (LABEL[id] || id.replace(/_/g,' ')).toLowerCase();
+const byId = (arr,id) => arr.find(x=>x.id===id);
+
+const HEX = {white:"#FAFAF7",ivory:"#F3EBD6",beige:"#D9C4A3",black:"#1D1A1F",grey:"#9C9AA2",navy:"#1F2A4D",royal_blue:"#2748B8",sky_blue:"#8DB8E3",teal:"#137C7C",emerald:"#0F7B53",mint:"#A8DCC2",olive:"#6B7036",sage:"#A3B59A",yellow:"#F4CF3A",mustard:"#D4A017",orange:"#EE7B22",rust:"#B5502A",terracotta:"#C8643F",coral:"#F27B6B",peach:"#F6BE9A",red:"#C8102E",maroon:"#6D1A2A",wine:"#6E1F3B",magenta:"#C2187A",pink:"#EE7FAE",blush:"#F2C6CF",icy_pink:"#F6DDE6",lavender:"#BFA7DA",purple:"#6A3A9A",gold:"#C9A23A",silver:"#BFC3C8",brown:"#7A4E2D"};
+const isLight = hex => { const n=parseInt(hex.slice(1),16); return ((n>>16)*299+((n>>8)&255)*587+(n&255)*114)/1000 > 150; };
+
+/* print → CSS pattern layered over a base colour */
+function pattern(print, base){
+  const ink = isLight(base) ? 'rgba(43,22,49,.22)' : 'rgba(255,255,255,.28)';
+  const glint = isLight(base) ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.55)';
+  switch(print){
+    case 'bandhani': case 'polka':
+      return `radial-gradient(circle at 50% 50%, ${glint} 0 2.2px, transparent 2.8px) 0 0/14px 14px, radial-gradient(circle, ${ink} 0 1px, transparent 1.6px) 7px 7px/14px 14px`;
+    case 'sequins': case 'mirror_work':
+      return `radial-gradient(circle at 35% 35%, ${glint} 0 1.6px, transparent 2px) 0 0/9px 9px, radial-gradient(circle, ${ink} 0 3px, transparent 3.5px) 4px 4px/9px 9px`;
+    case 'stripes': case 'leheriya':
+      return `repeating-linear-gradient(135deg, ${ink} 0 5px, transparent 5px 14px)`;
+    case 'checks':
+      return `repeating-linear-gradient(0deg, ${ink} 0 4px, transparent 4px 16px), repeating-linear-gradient(90deg, ${ink} 0 4px, transparent 4px 16px)`;
+    case 'floral': case 'block_print': case 'ajrakh': case 'kalamkari': case 'phulkari': case 'ikat':
+      return `radial-gradient(circle at 50% 50%, ${glint} 0 2px, transparent 2.5px) 0 0/26px 26px, radial-gradient(circle at 50% 50%, ${ink} 0 6px, transparent 6.5px) 0 0/26px 26px, radial-gradient(circle, ${ink} 0 3px, transparent 3.5px) 13px 13px/26px 26px`;
+    case 'chikankari_embroidery': case 'zari': case 'gota_patti':
+      return `radial-gradient(circle, ${glint} 0 1.1px, transparent 1.6px) 0 0/8px 8px, repeating-linear-gradient(90deg, transparent 0 22px, ${ink} 22px 23px)`;
+    case 'graphic':
+      return `radial-gradient(circle at 50% 45%, ${ink} 0 22px, transparent 23px)`;
+    default: return '';
+  }
+}
+
+/* ---------- state (session only) ---------- */
+let answers = {}, step = -1, shown = 3;
+const SKEY = 'toteaa-quiz-session';
+try { const s = JSON.parse(sessionStorage.getItem(SKEY)||'null'); if (s) { answers = s.answers||{}; step = s.step ?? -1; } } catch(e) {}
+const persist = () => { try { sessionStorage.setItem(SKEY, JSON.stringify({answers, step})); } catch(e) {} };
+
+/* ---------- question options ---------- */
+function optionsFor(q){
+  if (q.options) return q.options.map(o=>({id:o.id,label:o.label,emoji:o.emoji}));
+  switch(q.id){
+    case 'occasion': return (TAX.occasions[answers.occasion_group]||[]).map(id=>({id,label:human(id)}));
+    case 'company': return TAX.company.map(c=>({id:c.id,label:c.label}));
+    case 'ethnic_dial': return TAX.ethnic_dial.map(c=>({id:c.id,label:c.label}));
+    case 'vibe': return TAX.vibes.map(c=>({id:c.id,label:c.label}));
+    case 'weather': return TAX.weather.map(c=>({id:c.id,label:c.label}));
+    case 'limits': return TAX.comfort_limits.map(c=>({id:c.id,label:c.label}));
+    case 'budget': return TAX.budget.map(c=>({id:c.id,label:c.label}));
+    case 'undertone': return TAX.undertone.map(c=>({id:c.id,label:human(c.id)}));
+  }
+  return [];
+}
+const isMulti = q => q.type==='multi';
+const answered = q => { const a=answers[q.id]; return isMulti(q) ? Array.isArray(a) && a.length>0 : !!a; };
+
+/* ---------- scoring ---------- */
+const groupOf = occ => Object.keys(TAX.occasions).find(g=>TAX.occasions[g].includes(occ));
+function heroGarment(o){ const it=o.items.find(i=>i.slot==='full')||o.items.find(i=>i.slot==='top'); return it?it.garment:o.id; }
+
+function evaluate(o, relax){
+  const W = QUIZ.scoring.weights, B = QUIZ.scoring.bonuses;
+  let s = 0; const why = []; const fails = [];
+  // occasion
+  if (o.occasions.includes(answers.occasion)) { s += W.occasion; why.push('Made for '+human(answers.occasion)); }
+  else if (o.occasions.some(x=>groupOf(x)===answers.occasion_group)) s += W.occasion/3;
+  // colour rules for the occasion
+  const rule = TAX.occasion_colour_rules[answers.occasion];
+  if (rule) {
+    if (o.palette.some(c=>rule.prefer.includes(c))) { s += B.occasion_colour_prefer; why.push('Right colours for '+human(answers.occasion)); }
+    if (o.palette.some(c=>rule.avoid.includes(c))) s += QUIZ.scoring.penalties.occasion_colour_avoid;
+  }
+  // ethnic dial
+  const dials = ['desi','indo_western','western'];
+  const d = Math.abs(dials.indexOf(o.ethnic_dial) - dials.indexOf(answers.ethnic_dial));
+  if (d===0) { s += W.ethnic_dial; why.push(byId(TAX.ethnic_dial,o.ethnic_dial).label); } else if (d===1) s += W.ethnic_dial/2;
+  // vibes
+  const vib = (answers.vibe||[]).filter(v=>o.vibes.includes(v));
+  if (vib.length) { s += W.vibe * vib.length / Math.max(1,(answers.vibe||[]).length); vib.forEach(v=>why.push(byId(TAX.vibes,v).label)); }
+  // weather
+  const w = byId(TAX.weather, answers.weather);
+  if (w) {
+    const badFab = o.items.some(i=>w.bad_fabrics.includes(i.fabric));
+    const badLen = (w.bad_lengths||[]).length && o.items.some(i=>w.bad_lengths.includes(i.length));
+    if (badFab || badLen) fails.push('weather');
+    if (o.weather_fit.includes(w.id)) { s += W.weather;
+      const breathable = o.items.some(i=>TAX.breathable_fabrics.includes(i.fabric));
+      why.push(w.id==='hot_humid'&&breathable ? 'Breathable in the heat' : w.id==='monsoon' ? 'Rain-friendly' : 'Suits '+w.label.toLowerCase()+' weather');
+    }
+  }
+  // company → coverage
+  const c = byId(TAX.company, answers.company);
+  if (c) {
+    if (o.modesty_level >= c.modesty_bias && o.company_fit.includes(c.id)) { s += W.company; if (c.modesty_bias>=2) why.push('Family-approved coverage'); }
+    else if (o.modesty_level < c.modesty_bias) s -= 1.5;
+  }
+  // limits (hard)
+  const lim = answers.limits||[];
+  const unmet = lim.filter(l=>!o.comfort.includes(l));
+  if (lim.length && !unmet.length) { s += W.limits; why.push('Ticks all your deal-breakers'); }
+  if (unmet.length) fails.push('limits');
+  // budget
+  const b = byId(TAX.budget, answers.budget);
+  if (b && b.max_inr) { if (o.price_band_inr[0] <= b.max_inr) { s += W.budget; why.push('Fits '+b.label); } else fails.push('budget'); }
+  // undertone
+  const u = byId(TAX.undertone, answers.undertone);
+  if (u && u.flattering.length) { const hit = o.palette.filter(x=>u.flattering.includes(x)); if (hit.length) { s += W.undertone*hit.length; why.push('Colours for '+u.id+' undertones'); } }
+  // trending
+  if (o.trend_tags.length) { s += B.trending; why.push('Trending now'); }
+  // relaxed filters become penalties
+  const blocking = fails.filter(f=>!relax.includes(f));
+  relax.forEach(f=>{ if (fails.includes(f)) s -= 2.5; });
+  return {o, s, why:[...new Set(why)].slice(0,5), blocked: blocking.length>0};
+}
+
+function rank(){
+  const order = [[], ['budget'], ['budget','weather'], ['budget','weather','limits']];
+  let pool = [];
+  for (const relax of order) {
+    pool = OUTFITS.map(o=>evaluate(o, relax)).filter(r=>!r.blocked);
+    if (pool.length >= 6 || relax.length===3) break;
+  }
+  pool.sort((a,b)=>b.s-a.s);
+  // diversify: avoid repeating the hero garment in the top picks
+  const out = [], seen = new Set();
+  pool.forEach(r=>{ const h=heroGarment(r.o); if(!seen.has(h)){ out.push(r); seen.add(h);} });
+  pool.forEach(r=>{ if(!out.includes(r)) out.push(r); });
+  return out;
+}
+
+/* ---------- rendering ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const SLOT = {top:'Top',bottom:'Bottom',full:'Outfit',layer:'Layer',footwear:'Shoes',jewellery:'Jewellery',bag:'Bag',extra:'Extra'};
+
+function swatchHTML(o, rankNo){
+  const bands = o.items.filter(i=>i.colour && ['full','top','bottom','layer','footwear'].includes(i.slot));
+  const hero = bands.find(i=>i.slot==='full') || bands[0];
+  return `<div class="swatch" role="img" aria-label="Colour swatch: ${esc(o.palette.map(lower).join(', '))}">
+    ${bands.map(i=>{
+      const base = HEX[i.colour]||'#ccc', pat = pattern(i.print, base);
+      const cls = i===hero ? 'hero' : (i.slot==='footwear' ? '' : 'mid');
+      return `<div class="band ${cls}" style="background:${pat?pat+', ':''}${base}"><span>${esc(human(i.garment))}</span></div>`;
+    }).join('')}
+    ${rankNo ? `<div class="rank">${rankNo}</div>` : ''}
+  </div>`;
+}
+
+function cardHTML(r, idx, example){
+  const o = r.o;
+  const items = o.items.map(i=>`<li><span class="slot">${SLOT[i.slot]}</span><span>${i.colour?`<i class="dot" style="background:${HEX[i.colour]}"></i>`:''}${esc([i.colour&&lower(i.colour), i.fabric&&lower(i.fabric), i.print&&i.print!=='solid'&&lower(i.print)!==lower(i.fabric||'')&&lower(i.print)].filter(Boolean).join(' ')+' ')}<strong>${esc(human(i.garment).toLowerCase())}</strong></span></li>`).join('');
+  const tp = o.tote_pairing||{};
+  const price = o.price_band_inr ? `₹${o.price_band_inr[0].toLocaleString('en-IN')}–${o.price_band_inr[1].toLocaleString('en-IN')}` : '';
+  return `<article class="card fade" style="animation-delay:${idx*70}ms">
+    ${swatchHTML(o, example ? '' : idx+1)}
+    <div class="card-body">
+      <h3>${esc(o.title)}</h3>
+      ${r.why && r.why.length ? `<div class="why">${r.why.map(w=>`<span>${esc(w)}</span>`).join('')}</div>` : ''}
+      <ul class="items">${items}</ul>
+      <p class="tip">${esc(o.styling_tip)}</p>
+      <div class="tag"><div class="hole" aria-hidden="true"></div><div><b>Pair it with</b><strong>${esc(tp.style||'A Toteaa tote')}</strong><p>${esc(tp.reason||'')}</p></div></div>
+      <div class="meta"><span>Approx. ${price}</span>${o.accessory_pairing&&o.accessory_pairing.length?`<span>+ ${esc(o.accessory_pairing.join(', '))}</span>`:''}</div>
+      ${example ? '' : `<div class="actions">
+        <button class="btn small" data-act="img" data-id="${o.id}">Save as image</button>
+        <button class="btn small ghost" data-act="share" data-id="${o.id}">Share look</button>
+        <a class="btn small ghost" href="https://toteaa.com/" target="_blank" rel="noopener">Shop the tote</a>
+      </div>`}
+    </div>
+  </article>`;
+}
+
+function setProgress(){
+  const st = document.getElementById('stitch');
+  const qs = QUIZ.questions;
+  st.hidden = step < 0;
+  const pct = step >= qs.length ? 100 : Math.max(0, step/qs.length*100);
+  document.getElementById('done').style.width = pct+'%';
+  document.getElementById('needle').style.left = pct+'%';
+}
+
+function renderIntro(){
+  const ex = OUTFITS.find(o=>o.id==='of_haldi_mustard_sharara') || OUTFITS[0];
+  app.innerHTML = `<section class="hero fade">
+      <span class="eyebrow">Outfit finder for desi girls</span>
+      <h1>Kya <em>pehnu</em> aaj?</h1>
+      <p>Nine quick taps. Three outfits picked for your occasion, your people and your weather, each with a Toteaa tote to carry.</p>
+      <ul class="facts"><li>${OUTFITS.length} looks, Haldi to college</li><li>Under a minute</li><li>No sign-up</li></ul>
+      <div class="cta"><button class="btn" id="start">Start the quiz</button>${Object.keys(answers).length?'<button class="link" id="resume">Continue where you left off</button>':''}</div>
+    </section>
+    <section class="example"><span class="eyebrow">Example result</span>${cardHTML({o:ex, why:['Made for Haldi','Right colours for Haldi','Soft & cute']}, 0, true)}</section>`;
+  document.getElementById('start').onclick = ()=>{ answers={}; step=0; persist(); render(); };
+  const r = document.getElementById('resume'); if (r) r.onclick = ()=>{ if(step<0) step=0; render(); };
+}
+
+function renderQuestion(){
+  const qs = QUIZ.questions, q = qs[step];
+  const opts = optionsFor(q);
+  const multi = isMulti(q), dial = q.type==='slider3';
+  const cur = answers[q.id];
+  const pressed = id => multi ? (cur||[]).includes(id) : cur===id;
+  app.innerHTML = `<section class="q fade">
+      <span class="eyebrow">Question ${step+1} of ${qs.length}${q.optional?' · optional':''}</span>
+      <h2>${esc(q.prompt)}</h2>
+      ${q.hint?`<p class="hint">${esc(q.hint)}</p>`:''}
+      ${multi?`<p class="hint">Pick up to ${q.max||'any'}${q.max?'':' that apply'}.</p>`:''}
+      <div class="${dial?'dial':'opts'}" role="group" aria-label="${esc(q.prompt)}">
+        ${opts.map(o=>`<button class="opt" id="opt-${q.id}-${o.id}" data-id="${o.id}" aria-pressed="${pressed(o.id)}">${o.emoji?`<span class="em" aria-hidden="true">${o.emoji}</span>`:''}<span>${esc(o.label)}</span><i class="tick" aria-hidden="true"></i></button>`).join('')}
+      </div>
+      ${dial?'<div class="dial-scale"><span>More traditional</span><span>More modern</span></div>':''}
+      <div class="nav">
+        <button class="btn ghost small" id="back">Back</button>
+        <div class="right">
+          ${multi&&q.max?`<span class="count" id="count">${(cur||[]).length}/${q.max}</span>`:''}
+          ${q.optional&&!answered(q)?'<button class="link" id="skip">Skip</button>':''}
+          ${(multi||answered(q))?`<button class="btn small" id="next" ${answered(q)||q.optional?'':'disabled'}>${step===qs.length-1?'See my outfits':'Next'}</button>`:''}
+        </div>
+      </div>
+    </section>`;
+  app.querySelectorAll('.opt').forEach(b=>b.onclick = ()=>{
+    const id = b.dataset.id;
+    if (multi) {
+      let a = answers[q.id] || [];
+      if (a.includes(id)) a = a.filter(x=>x!==id);
+      else { a = [...a, id]; if (q.max && a.length>q.max) a = a.slice(1); }
+      answers[q.id] = a; persist(); renderQuestion();
+    } else {
+      if (q.id==='occasion_group' && answers.occasion_group!==id) delete answers.occasion;
+      answers[q.id] = id; persist();
+      setTimeout(advance, 160);
+      b.setAttribute('aria-pressed','true');
+      app.querySelectorAll('.opt').forEach(x=>{ if(x!==b) x.setAttribute('aria-pressed','false'); });
+    }
+  });
+  document.getElementById('back').onclick = ()=>{ step--; persist(); render(); };
+  const n = document.getElementById('next'); if (n) n.onclick = advance;
+  const s = document.getElementById('skip'); if (s) s.onclick = ()=>{ delete answers[q.id]; advance(); };
+}
+
+function advance(){ step++; shown = 3; persist(); render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+let lastRanked = [];
+function renderResults(){
+  lastRanked = rank();
+  const picks = lastRanked.slice(0, shown);
+  const sum = [human(answers.occasion), (byId(TAX.company,answers.company)||{}).label, (byId(TAX.ethnic_dial,answers.ethnic_dial)||{}).label, ...(answers.vibe||[]).map(v=>byId(TAX.vibes,v).label), (byId(TAX.weather,answers.weather)||{}).label].filter(Boolean);
+  app.innerHTML = `<section class="res-head fade">
+      <span class="eyebrow">Your picks</span>
+      <h2>Wear this for ${esc(human(answers.occasion))}</h2>
+      <p>Ranked by how well each look fits your answers.</p>
+      <div class="summary">${sum.map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+    </section>
+    <div class="cards">${picks.map((r,i)=>cardHTML(r,i,false)).join('')}</div>
+    <div class="res-foot">
+      ${shown < lastRanked.length ? '<button class="btn ghost" id="more">Show 3 more</button>' : ''}
+      <button class="btn ghost" id="edit">Change answers</button>
+      <button class="btn" id="again">Start over</button>
+    </div>`;
+  const m = document.getElementById('more'); if (m) m.onclick = ()=>{ shown += 3; renderResults(); };
+  document.getElementById('edit').onclick = ()=>{ step = 0; persist(); render(); };
+  document.getElementById('again').onclick = ()=>{ answers = {}; step = -1; persist(); render(); };
+  app.querySelectorAll('[data-act]').forEach(b=>b.onclick = ()=>{
+    const r = lastRanked.find(x=>x.o.id===b.dataset.id);
+    if (b.dataset.act==='img') saveImage(r.o); else share(r.o);
+  });
+}
+
+function render(){
+  setProgress();
+  if (step < 0) renderIntro();
+  else if (step >= QUIZ.questions.length) renderResults();
+  else renderQuestion();
+}
+
+/* ---------- save / share (all on-device) ---------- */
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(()=>t.hidden=true,2200); }
+function lookText(o){
+  return `${o.title}\n` + o.items.map(i=>`• ${[i.colour&&lower(i.colour), human(i.garment).toLowerCase()].filter(Boolean).join(' ')}`).join('\n') + `\nPair it with: ${(o.tote_pairing||{}).style||'a Toteaa tote'}\n\nFound on the Toteaa "Kya pehnu?" quiz`;
+}
+async function share(o){
+  const text = lookText(o);
+  if (navigator.share && window.self===window.top) { try { await navigator.share({title:o.title, text}); return; } catch(e) { if (e.name==='AbortError') return; } }
+  try { await navigator.clipboard.writeText(text); toast('Look copied. Paste it anywhere.'); }
+  catch(e) { toast('Copy did not work here. Try Save as image.'); }
+}
+async function saveImage(o){
+  try { await document.fonts.ready; } catch(e) {}
+  const W=1080,H=1350,c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  x.fillStyle='#FFF5F8'; x.fillRect(0,0,W,H);
+  // colour bands
+  const bands = o.items.filter(i=>i.colour && ['full','top','bottom','layer','footwear'].includes(i.slot));
+  const weights = bands.map((b,i)=> b.slot==='full'||i===0 ? 3 : b.slot==='footwear' ? 1 : 1.6);
+  const tot = weights.reduce((a,b)=>a+b,0); let bx=60;
+  bands.forEach((b,i)=>{ const w=(W-120)*weights[i]/tot; x.fillStyle=HEX[b.colour]; x.fillRect(bx,60,w,560);
+    x.fillStyle='rgba(255,255,255,.9)'; x.font='600 26px Hind, sans-serif'; const label=human(b.garment); const tw=Math.min(x.measureText(label).width+28,w-24);
+    if (w>90){ x.beginPath(); x.roundRect(bx+14,560,tw,40,20); x.fill(); x.fillStyle='#2B1631'; x.save(); x.beginPath(); x.rect(bx+14,560,tw,40); x.clip(); x.fillText(label,bx+28,589); x.restore(); }
+    bx+=w; });
+  x.fillStyle='#2B1631'; x.font='64px "Rozha One", Georgia, serif';
+  const words=o.title.split(' '); let line='', y=730;
+  words.forEach(wd=>{ const t=line?line+' '+wd:wd; if (x.measureText(t).width>W-120){ x.fillText(line,60,y); y+=74; line=wd; } else line=t; }); x.fillText(line,60,y);
+  y+=60; x.font='32px Hind, sans-serif'; x.fillStyle='#4A3350';
+  o.items.slice(0,5).forEach(i=>{ x.fillStyle=HEX[i.colour]||'#999'; x.beginPath(); x.arc(74,y-10,11,0,7); x.fill(); x.fillStyle='#4A3350';
+    x.fillText([i.colour&&lower(i.colour), i.fabric&&lower(i.fabric), human(i.garment).toLowerCase()].filter(Boolean).join(' '),100,y); y+=48; });
+  // tote tag
+  y = Math.max(y+20, 1130); x.setLineDash([12,8]); x.strokeStyle='#C8195F'; x.lineWidth=3; x.fillStyle='#FADCE8';
+  x.beginPath(); x.roundRect(60,y,W-120,130,[18,18,18,48]); x.fill(); x.stroke(); x.setLineDash([]);
+  x.fillStyle='#C8195F'; x.font='600 24px Hind, sans-serif'; x.fillText('PAIR IT WITH',100,y+50);
+  x.fillStyle='#2B1631'; x.font='600 36px Hind, sans-serif'; x.fillText((o.tote_pairing||{}).style||'A Toteaa tote',100,y+96);
+  x.fillStyle='#C8195F'; x.font='34px "Rozha One", Georgia, serif'; x.textAlign='right'; x.fillText('toteaa',W-60,H-40);
+  x.fillStyle='#7A5F77'; x.font='24px Hind, sans-serif'; x.textAlign='left'; x.fillText('Kya pehnu? outfit quiz',60,H-44);
+  const url = c.toDataURL('image/png');
+  const framed = window.self !== window.top;
+  const ov = document.createElement('div'); ov.className='overlay';
+  ov.innerHTML = `<div class="sheet" role="dialog" aria-label="Your look as an image"><img src="${url}" alt="${esc(o.title)}"><p>${framed?'Long-press (phone) or right-click (desktop) the image to save it.':'Saved only on your device.'}</p>${framed?'':`<a class="btn" href="${url}" download="${o.id}.png">Download PNG</a>`}<button class="btn ghost" id="close-ov">Close</button></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove(); ov.querySelector('#close-ov').onclick=close; ov.onclick=e=>{ if(e.target===ov) close(); };
+}
+
+render();
+})();
+</script>
+
+</body>
+</html>

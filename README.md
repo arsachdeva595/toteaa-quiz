@@ -16,4 +16,7 @@ An outfit quiz for Indian girls that suggests a Toteaa tote to go with every loo
 | `data/taxonomy.json` | Controlled vocabulary: occasions, vibes, garments, fabrics, colours, dress-code colour rules, trend tags |
 | `data/quiz-v1.json` | Phase 1 question flow and scoring weights |
 | `data/schema/outfit.schema.json` | JSON Schema for an outfit record |
-| `data/outfits.sample.json` | 10 hand-curated sample outfits in the schema |
+| `data/outfits.sample.json` | 26 hand-curated sample outfits in the schema, covering every occasion |
+| `quiz/template.html` | Phase 1 quiz UI (edit this) |
+| `quiz/index.html` | Built quiz with the data inlined. Open it in a browser or host it anywhere; it needs no backend |
+| `scripts/build-quiz.py` | Rebuilds `quiz/index.html` after data or template changes: `python3 scripts/build-quiz.py` |

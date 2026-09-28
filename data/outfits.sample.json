@@ -2,251 +2,2098 @@
   {
     "id": "of_haldi_mustard_sharara",
     "title": "Mustard mulmul sharara, haldi-proof",
-    "occasions": ["haldi"],
+    "occasions": [
+      "haldi"
+    ],
     "ethnic_dial": "desi",
-    "vibes": ["soft_cute", "comfy"],
-    "company_fit": ["family", "mixed"],
-    "weather_fit": ["hot_humid", "dry_heat", "pleasant"],
-    "palette": ["mustard", "white", "gold"],
+    "vibes": [
+      "soft_cute",
+      "comfy"
+    ],
+    "company_fit": [
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "dry_heat",
+      "pleasant"
+    ],
+    "palette": [
+      "mustard",
+      "white",
+      "gold"
+    ],
     "modesty_level": 2,
-    "comfort": ["flats_only", "easy_to_dance", "no_dupatta"],
-    "price_band_inr": [1500, 3500],
-    "trend_tags": ["sharara_coord"],
+    "comfort": [
+      "flats_only",
+      "easy_to_dance",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      1500,
+      3500
+    ],
+    "trend_tags": [
+      "sharara_coord"
+    ],
     "items": [
-      { "slot": "top", "garment": "short_kurti", "colour": "mustard", "fabric": "mulmul", "print": "gota_patti", "length": "hip" },
-      { "slot": "bottom", "garment": "sharara", "colour": "mustard", "fabric": "mulmul", "length": "ankle" },
-      { "slot": "footwear", "garment": "kolhapuris", "colour": "gold" },
-      { "slot": "jewellery", "garment": "jhumkas", "colour": "gold" }
+      {
+        "slot": "top",
+        "garment": "short_kurti",
+        "colour": "mustard",
+        "fabric": "mulmul",
+        "print": "gota_patti",
+        "length": "hip"
+      },
+      {
+        "slot": "bottom",
+        "garment": "sharara",
+        "colour": "mustard",
+        "fabric": "mulmul",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "kolhapuris",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "jhumkas",
+        "colour": "gold"
+      }
     ],
     "styling_tip": "Skip the dupatta. Turmeric stains won't show on mustard, and you can actually dance.",
-    "tote_pairing": { "sku": "TBD", "reason": "Ivory canvas tote to hold the haldi bowls, and it won't clash with yellow" },
-    "accessory_pairing": ["floral hair clip"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Ivory canvas tote",
+      "reason": "Ivory canvas tote to hold the haldi bowls, and it won't clash with yellow"
+    },
+    "accessory_pairing": [
+      "floral hair clip"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_mehendi_mint_lehenga_shirt",
     "title": "Mint lehenga skirt + white shirt",
-    "occasions": ["mehendi", "roka_engagement"],
+    "occasions": [
+      "mehendi",
+      "roka_engagement"
+    ],
     "ethnic_dial": "indo_western",
-    "vibes": ["main_character", "romantic"],
-    "company_fit": ["friends", "mixed", "family"],
-    "weather_fit": ["pleasant", "ac_indoors", "dry_heat"],
-    "palette": ["mint", "white", "silver"],
+    "vibes": [
+      "main_character",
+      "romantic"
+    ],
+    "company_fit": [
+      "friends",
+      "mixed",
+      "family"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "ac_indoors",
+      "dry_heat"
+    ],
+    "palette": [
+      "mint",
+      "white",
+      "silver"
+    ],
     "modesty_level": 2,
-    "comfort": ["no_dupatta", "covered_shoulders", "below_knee"],
-    "price_band_inr": [2500, 6000],
-    "trend_tags": ["lehenga_skirt_with_shirt"],
+    "comfort": [
+      "no_dupatta",
+      "covered_shoulders",
+      "below_knee"
+    ],
+    "price_band_inr": [
+      2500,
+      6000
+    ],
+    "trend_tags": [
+      "lehenga_skirt_with_shirt"
+    ],
     "items": [
-      { "slot": "top", "garment": "shirt", "colour": "white", "fabric": "cotton" },
-      { "slot": "bottom", "garment": "lehenga_skirt", "colour": "mint", "fabric": "georgette", "print": "floral", "length": "floor" },
-      { "slot": "footwear", "garment": "juttis", "colour": "silver" },
-      { "slot": "jewellery", "garment": "oxidised_silver", "colour": "silver" }
+      {
+        "slot": "top",
+        "garment": "shirt",
+        "colour": "white",
+        "fabric": "cotton"
+      },
+      {
+        "slot": "bottom",
+        "garment": "lehenga_skirt",
+        "colour": "mint",
+        "fabric": "georgette",
+        "print": "floral",
+        "length": "floor"
+      },
+      {
+        "slot": "footwear",
+        "garment": "juttis",
+        "colour": "silver"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "oxidised_silver",
+        "colour": "silver"
+      }
     ],
     "styling_tip": "Knot the shirt at the waist and roll the sleeves, so your mehendi hands are the hero.",
-    "tote_pairing": { "sku": "TBD", "reason": "Pastel floral tote goes with the mehendi-garden vibe" },
-    "accessory_pairing": ["silver jhumkas"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Pastel floral tote",
+      "reason": "Pastel floral tote goes with the mehendi-garden vibe"
+    },
+    "accessory_pairing": [
+      "silver jhumkas"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_sangeet_wine_sequin",
     "title": "Wine sequin lehenga for sangeet",
-    "occasions": ["sangeet", "cocktail", "reception"],
+    "occasions": [
+      "sangeet",
+      "cocktail",
+      "reception"
+    ],
     "ethnic_dial": "desi",
-    "vibes": ["main_character", "bold"],
-    "company_fit": ["friends", "mixed"],
-    "weather_fit": ["pleasant", "cold", "ac_indoors"],
-    "palette": ["wine", "gold"],
+    "vibes": [
+      "main_character",
+      "bold"
+    ],
+    "company_fit": [
+      "friends",
+      "mixed"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "cold",
+      "ac_indoors"
+    ],
+    "palette": [
+      "wine",
+      "gold"
+    ],
     "modesty_level": 1,
-    "comfort": ["easy_to_dance"],
-    "price_band_inr": [6000, 15000],
+    "comfort": [
+      "easy_to_dance"
+    ],
+    "price_band_inr": [
+      6000,
+      15000
+    ],
     "trend_tags": [],
     "items": [
-      { "slot": "full", "garment": "lehenga_set", "colour": "wine", "fabric": "georgette", "print": "sequins", "length": "floor" },
-      { "slot": "footwear", "garment": "block_heels", "colour": "gold" },
-      { "slot": "jewellery", "garment": "chandbalis", "colour": "gold" },
-      { "slot": "bag", "garment": "potli", "colour": "gold" }
+      {
+        "slot": "full",
+        "garment": "lehenga_set",
+        "colour": "wine",
+        "fabric": "georgette",
+        "print": "sequins",
+        "length": "floor"
+      },
+      {
+        "slot": "footwear",
+        "garment": "block_heels",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "chandbalis",
+        "colour": "gold"
+      },
+      {
+        "slot": "bag",
+        "garment": "potli",
+        "colour": "gold"
+      }
     ],
     "styling_tip": "Sequins catch the stage lights. Keep the jewellery to just statement earrings.",
-    "tote_pairing": { "sku": "TBD", "reason": "Bring a tote for your sneaker switch after the performance" },
-    "accessory_pairing": ["gold potli"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Sneaker-swap tote",
+      "reason": "Bring a tote for your sneaker switch after the performance"
+    },
+    "accessory_pairing": [
+      "gold potli"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_college_oversized_tee",
     "title": "Oversized graphic tee + wide-leg denims",
-    "occasions": ["college", "errands", "movie_outing", "travel_airport"],
+    "occasions": [
+      "college",
+      "errands",
+      "movie_outing",
+      "travel_airport"
+    ],
     "ethnic_dial": "western",
-    "vibes": ["comfy", "streetwear"],
-    "company_fit": ["friends", "mixed"],
-    "weather_fit": ["pleasant", "ac_indoors", "dry_heat"],
-    "palette": ["white", "sky_blue", "black"],
+    "vibes": [
+      "comfy",
+      "streetwear"
+    ],
+    "company_fit": [
+      "friends",
+      "mixed"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "ac_indoors",
+      "dry_heat"
+    ],
+    "palette": [
+      "white",
+      "sky_blue",
+      "black"
+    ],
     "modesty_level": 2,
-    "comfort": ["flats_only", "pockets", "covered_shoulders"],
-    "price_band_inr": [800, 2500],
-    "trend_tags": ["oversized_tee_wide_leg"],
+    "comfort": [
+      "flats_only",
+      "pockets",
+      "covered_shoulders"
+    ],
+    "price_band_inr": [
+      800,
+      2500
+    ],
+    "trend_tags": [
+      "oversized_tee_wide_leg"
+    ],
     "items": [
-      { "slot": "top", "garment": "graphic_tee", "colour": "white", "fabric": "cotton" },
-      { "slot": "bottom", "garment": "wide_leg_jeans", "colour": "sky_blue", "fabric": "denim", "length": "ankle" },
-      { "slot": "footwear", "garment": "sneakers", "colour": "white" },
-      { "slot": "jewellery", "garment": "hoops", "colour": "silver" }
+      {
+        "slot": "top",
+        "garment": "graphic_tee",
+        "colour": "white",
+        "fabric": "cotton"
+      },
+      {
+        "slot": "bottom",
+        "garment": "wide_leg_jeans",
+        "colour": "sky_blue",
+        "fabric": "denim",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sneakers",
+        "colour": "white"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "hoops",
+        "colour": "silver"
+      }
     ],
     "styling_tip": "Front-tuck the tee so it doesn't swallow you.",
-    "tote_pairing": { "sku": "TBD", "reason": "Quirky printed tote that fits a laptop, and it's the loudest thing you're wearing" },
-    "accessory_pairing": ["claw clip"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Quirky printed tote",
+      "reason": "Quirky printed tote that fits a laptop, and it's the loudest thing you're wearing"
+    },
+    "accessory_pairing": [
+      "claw clip"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_office_chikankari_trousers",
     "title": "Chikankari shirt + tailored trousers",
-    "occasions": ["office", "brunch", "interview", "first_day_work"],
+    "occasions": [
+      "office",
+      "brunch",
+      "interview",
+      "first_day_work"
+    ],
     "ethnic_dial": "indo_western",
-    "vibes": ["minimal", "boss", "old_money"],
-    "company_fit": ["colleagues", "family", "mixed"],
-    "weather_fit": ["hot_humid", "dry_heat", "pleasant", "ac_indoors"],
-    "palette": ["ivory", "beige"],
+    "vibes": [
+      "minimal",
+      "boss",
+      "old_money"
+    ],
+    "company_fit": [
+      "colleagues",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "dry_heat",
+      "pleasant",
+      "ac_indoors"
+    ],
+    "palette": [
+      "ivory",
+      "beige"
+    ],
     "modesty_level": 3,
-    "comfort": ["no_dupatta", "flats_only", "covered_shoulders", "below_knee", "pockets", "no_sheer"],
-    "price_band_inr": [1800, 4500],
-    "trend_tags": ["old_money_ethnic"],
+    "comfort": [
+      "no_dupatta",
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "pockets",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      1800,
+      4500
+    ],
+    "trend_tags": [
+      "old_money_ethnic"
+    ],
     "items": [
-      { "slot": "top", "garment": "shirt", "colour": "ivory", "fabric": "chikankari", "print": "chikankari_embroidery" },
-      { "slot": "bottom", "garment": "trousers", "colour": "beige", "fabric": "linen", "length": "ankle" },
-      { "slot": "footwear", "garment": "loafers", "colour": "brown" },
-      { "slot": "jewellery", "garment": "studs", "colour": "gold" }
+      {
+        "slot": "top",
+        "garment": "shirt",
+        "colour": "ivory",
+        "fabric": "chikankari",
+        "print": "chikankari_embroidery"
+      },
+      {
+        "slot": "bottom",
+        "garment": "trousers",
+        "colour": "beige",
+        "fabric": "linen",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "loafers",
+        "colour": "brown"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "studs",
+        "colour": "gold"
+      }
     ],
     "styling_tip": "Wear a camisole under the chikankari, and add a thin gold chain for the old-money look.",
-    "tote_pairing": { "sku": "TBD", "reason": "Structured neutral tote that holds a laptop and goes with a boardroom" },
-    "accessory_pairing": ["thin gold chain", "watch"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Structured neutral tote",
+      "reason": "Structured neutral tote that holds a laptop and goes with a boardroom"
+    },
+    "accessory_pairing": [
+      "thin gold chain",
+      "watch"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_farewell_black_saree",
     "title": "Pre-draped black saree + corset blouse",
-    "occasions": ["farewell", "cocktail", "college_fest"],
+    "occasions": [
+      "farewell",
+      "cocktail",
+      "college_fest"
+    ],
     "ethnic_dial": "indo_western",
-    "vibes": ["main_character", "bold"],
-    "company_fit": ["friends", "mixed"],
-    "weather_fit": ["pleasant", "ac_indoors", "cold"],
-    "palette": ["black", "silver"],
+    "vibes": [
+      "main_character",
+      "bold"
+    ],
+    "company_fit": [
+      "friends",
+      "mixed"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "ac_indoors",
+      "cold"
+    ],
+    "palette": [
+      "black",
+      "silver"
+    ],
     "modesty_level": 1,
-    "comfort": ["easy_to_dance", "no_dupatta"],
-    "price_band_inr": [2500, 7000],
-    "trend_tags": ["corset_blouse_saree", "pre_draped_saree"],
+    "comfort": [
+      "easy_to_dance",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      2500,
+      7000
+    ],
+    "trend_tags": [
+      "corset_blouse_saree",
+      "pre_draped_saree"
+    ],
     "items": [
-      { "slot": "full", "garment": "pre_draped_saree", "colour": "black", "fabric": "georgette", "print": "sequins", "length": "floor" },
-      { "slot": "top", "garment": "corset_blouse", "colour": "black", "fabric": "satin" },
-      { "slot": "footwear", "garment": "block_heels", "colour": "silver" },
-      { "slot": "jewellery", "garment": "chandbalis", "colour": "silver" }
+      {
+        "slot": "full",
+        "garment": "pre_draped_saree",
+        "colour": "black",
+        "fabric": "georgette",
+        "print": "sequins",
+        "length": "floor"
+      },
+      {
+        "slot": "top",
+        "garment": "corset_blouse",
+        "colour": "black",
+        "fabric": "satin"
+      },
+      {
+        "slot": "footwear",
+        "garment": "block_heels",
+        "colour": "silver"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "chandbalis",
+        "colour": "silver"
+      }
     ],
     "styling_tip": "Pre-draped means no safety-pin panic. Swap to sneakers for the dance floor.",
-    "tote_pairing": { "sku": "TBD", "reason": "Black-and-white illustrated tote for the sneaker and makeup kit" },
-    "accessory_pairing": ["silver bangles"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Black & white illustrated tote",
+      "reason": "Black-and-white illustrated tote for the sneaker and makeup kit"
+    },
+    "accessory_pairing": [
+      "silver bangles"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_garba_mirror_chaniya",
     "title": "Mirror-work chaniya choli for garba",
-    "occasions": ["navratri_garba"],
+    "occasions": [
+      "navratri_garba"
+    ],
     "ethnic_dial": "desi",
-    "vibes": ["bold", "main_character"],
-    "company_fit": ["friends", "family", "mixed"],
-    "weather_fit": ["hot_humid", "pleasant", "dry_heat"],
-    "palette": ["red", "orange", "emerald"],
+    "vibes": [
+      "bold",
+      "main_character"
+    ],
+    "company_fit": [
+      "friends",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "pleasant",
+      "dry_heat"
+    ],
+    "palette": [
+      "red",
+      "orange",
+      "emerald"
+    ],
     "modesty_level": 1,
-    "comfort": ["easy_to_dance", "flats_only"],
-    "price_band_inr": [1500, 5000],
+    "comfort": [
+      "easy_to_dance",
+      "flats_only"
+    ],
+    "price_band_inr": [
+      1500,
+      5000
+    ],
     "trend_tags": [],
     "items": [
-      { "slot": "full", "garment": "lehenga_set", "colour": "red", "fabric": "cotton", "print": "mirror_work", "length": "ankle" },
-      { "slot": "layer", "garment": "dupatta", "colour": "emerald", "print": "bandhani" },
-      { "slot": "footwear", "garment": "mojari", "colour": "gold" },
-      { "slot": "jewellery", "garment": "oxidised_silver", "colour": "silver" }
+      {
+        "slot": "full",
+        "garment": "lehenga_set",
+        "colour": "red",
+        "fabric": "cotton",
+        "print": "mirror_work",
+        "length": "ankle"
+      },
+      {
+        "slot": "layer",
+        "garment": "dupatta",
+        "colour": "emerald",
+        "print": "bandhani"
+      },
+      {
+        "slot": "footwear",
+        "garment": "mojari",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "oxidised_silver",
+        "colour": "silver"
+      }
     ],
     "styling_tip": "Ankle-length so you don't trip on the spins. Pin the dupatta at the shoulder AND the waist.",
-    "tote_pairing": { "sku": "TBD", "reason": "Bright tote for a water bottle and spare bindis" },
-    "accessory_pairing": ["oxidised kamarbandh", "anklet"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Bright folk-art tote",
+      "reason": "Bright tote for a water bottle and spare bindis"
+    },
+    "accessory_pairing": [
+      "oxidised kamarbandh",
+      "anklet"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_brunch_linen_coord",
     "title": "Sage linen co-ord set",
-    "occasions": ["brunch", "date_night", "travel_airport", "wfh_call"],
+    "occasions": [
+      "brunch",
+      "date_night",
+      "travel_airport",
+      "wfh_call"
+    ],
     "ethnic_dial": "western",
-    "vibes": ["minimal", "soft_cute", "old_money"],
-    "company_fit": ["friends", "date", "family", "colleagues"],
-    "weather_fit": ["hot_humid", "dry_heat", "pleasant"],
-    "palette": ["sage", "white"],
+    "vibes": [
+      "minimal",
+      "soft_cute",
+      "old_money"
+    ],
+    "company_fit": [
+      "friends",
+      "date",
+      "family",
+      "colleagues"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "dry_heat",
+      "pleasant"
+    ],
+    "palette": [
+      "sage",
+      "white"
+    ],
     "modesty_level": 2,
-    "comfort": ["flats_only", "no_dupatta", "pockets"],
-    "price_band_inr": [1500, 3500],
-    "trend_tags": ["coord_set"],
+    "comfort": [
+      "flats_only",
+      "no_dupatta",
+      "pockets"
+    ],
+    "price_band_inr": [
+      1500,
+      3500
+    ],
+    "trend_tags": [
+      "coord_set"
+    ],
     "items": [
-      { "slot": "full", "garment": "coord_set", "colour": "sage", "fabric": "linen", "length": "ankle" },
-      { "slot": "footwear", "garment": "sandals", "colour": "beige" },
-      { "slot": "jewellery", "garment": "layered_chains", "colour": "gold" }
+      {
+        "slot": "full",
+        "garment": "coord_set",
+        "colour": "sage",
+        "fabric": "linen",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sandals",
+        "colour": "beige"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "layered_chains",
+        "colour": "gold"
+      }
     ],
     "styling_tip": "Leave the shirt half open over a white tank and you're ready for Goa.",
-    "tote_pairing": { "sku": "TBD", "reason": "Natural canvas tote. It's the whole beach-brunch look" },
-    "accessory_pairing": ["sunglasses"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Natural canvas tote",
+      "reason": "Natural canvas tote. It's the whole beach-brunch look"
+    },
+    "accessory_pairing": [
+      "sunglasses"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_diwali_kurta_denim_jacket",
     "title": "Short kurta + dhoti pants + denim jacket",
-    "occasions": ["diwali", "college_fest", "family_dinner"],
+    "occasions": [
+      "diwali",
+      "college_fest",
+      "family_dinner"
+    ],
     "ethnic_dial": "indo_western",
-    "vibes": ["streetwear", "boho"],
-    "company_fit": ["friends", "family", "mixed"],
-    "weather_fit": ["pleasant", "cold"],
-    "palette": ["magenta", "navy", "gold"],
+    "vibes": [
+      "streetwear",
+      "boho"
+    ],
+    "company_fit": [
+      "friends",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "cold"
+    ],
+    "palette": [
+      "magenta",
+      "navy",
+      "gold"
+    ],
     "modesty_level": 3,
-    "comfort": ["no_dupatta", "flats_only", "covered_shoulders", "below_knee"],
-    "price_band_inr": [2000, 5000],
-    "trend_tags": ["kurta_with_denim_jacket", "sneakers_with_ethnic"],
+    "comfort": [
+      "no_dupatta",
+      "flats_only",
+      "covered_shoulders",
+      "below_knee"
+    ],
+    "price_band_inr": [
+      2000,
+      5000
+    ],
+    "trend_tags": [
+      "kurta_with_denim_jacket",
+      "sneakers_with_ethnic"
+    ],
     "items": [
-      { "slot": "top", "garment": "short_kurti", "colour": "magenta", "fabric": "silk", "print": "zari", "length": "hip" },
-      { "slot": "bottom", "garment": "dhoti_pants", "colour": "gold", "fabric": "silk" },
-      { "slot": "layer", "garment": "denim_jacket", "colour": "navy", "fabric": "denim" },
-      { "slot": "footwear", "garment": "sneakers", "colour": "white" },
-      { "slot": "jewellery", "garment": "jhumkas", "colour": "gold" }
+      {
+        "slot": "top",
+        "garment": "short_kurti",
+        "colour": "magenta",
+        "fabric": "silk",
+        "print": "zari",
+        "length": "hip"
+      },
+      {
+        "slot": "bottom",
+        "garment": "dhoti_pants",
+        "colour": "gold",
+        "fabric": "silk"
+      },
+      {
+        "slot": "layer",
+        "garment": "denim_jacket",
+        "colour": "navy",
+        "fabric": "denim"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sneakers",
+        "colour": "white"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "jhumkas",
+        "colour": "gold"
+      }
     ],
     "styling_tip": "Denim over zari makes it look like you tried AND like you didn't. Keep the jacket off near diyas.",
-    "tote_pairing": { "sku": "TBD", "reason": "Festive-print tote for mithai boxes on the round of house visits" },
-    "accessory_pairing": ["bangles"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Festive-print tote",
+      "reason": "Festive-print tote for mithai boxes on the round of house visits"
+    },
+    "accessory_pairing": [
+      "bangles"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   },
   {
     "id": "of_temple_cotton_anarkali",
     "title": "Block-print cotton anarkali",
-    "occasions": ["temple_gurudwara", "home_puja", "rishta_meet", "raksha_bandhan", "family_dinner"],
+    "occasions": [
+      "temple_gurudwara",
+      "home_puja",
+      "rishta_meet",
+      "raksha_bandhan",
+      "family_dinner"
+    ],
     "ethnic_dial": "desi",
-    "vibes": ["soft_cute", "romantic"],
-    "company_fit": ["family"],
-    "weather_fit": ["hot_humid", "dry_heat", "pleasant"],
-    "palette": ["peach", "white"],
+    "vibes": [
+      "soft_cute",
+      "romantic"
+    ],
+    "company_fit": [
+      "family"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "dry_heat",
+      "pleasant"
+    ],
+    "palette": [
+      "peach",
+      "white"
+    ],
     "modesty_level": 3,
-    "comfort": ["flats_only", "covered_shoulders", "below_knee", "no_sheer"],
-    "price_band_inr": [900, 2500],
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      900,
+      2500
+    ],
     "trend_tags": [],
     "items": [
-      { "slot": "full", "garment": "anarkali_set", "colour": "peach", "fabric": "cotton", "print": "block_print", "length": "ankle" },
-      { "slot": "layer", "garment": "dupatta", "colour": "white", "fabric": "mulmul" },
-      { "slot": "footwear", "garment": "juttis", "colour": "gold" },
-      { "slot": "jewellery", "garment": "jhumkas", "colour": "silver" }
+      {
+        "slot": "full",
+        "garment": "anarkali_set",
+        "colour": "peach",
+        "fabric": "cotton",
+        "print": "block_print",
+        "length": "ankle"
+      },
+      {
+        "slot": "layer",
+        "garment": "dupatta",
+        "colour": "white",
+        "fabric": "mulmul"
+      },
+      {
+        "slot": "footwear",
+        "garment": "juttis",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "jhumkas",
+        "colour": "silver"
+      }
     ],
     "styling_tip": "Wear the dupatta on one side so it's easy to cover your head at the gurudwara.",
-    "tote_pairing": { "sku": "TBD", "reason": "Soft pastel tote big enough for prasad and slippers" },
-    "accessory_pairing": ["small bindi"],
-    "source": { "type": "curated" },
-    "review": { "tagged_by": "human", "approved": false }
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Soft pastel tote",
+      "reason": "Soft pastel tote big enough for prasad and slippers"
+    },
+    "accessory_pairing": [
+      "small bindi"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_club_satin_midi",
+    "title": "Black satin midi + statement hoops",
+    "occasions": [
+      "clubbing",
+      "cocktail",
+      "date_night",
+      "christmas_newyear"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "bold",
+      "main_character"
+    ],
+    "company_fit": [
+      "friends",
+      "date"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "ac_indoors",
+      "cold"
+    ],
+    "palette": [
+      "black",
+      "gold"
+    ],
+    "modesty_level": 1,
+    "comfort": [
+      "easy_to_dance",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      1200,
+      3500
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "dress_midi",
+        "colour": "black",
+        "fabric": "satin",
+        "print": "solid",
+        "length": "midi"
+      },
+      {
+        "slot": "footwear",
+        "garment": "block_heels",
+        "colour": "black"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "hoops",
+        "colour": "gold"
+      },
+      {
+        "slot": "bag",
+        "garment": "mini_bag",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Block heels over stilettos. You'll still be standing at 2am.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Black illustrated tote",
+      "reason": "Leave it in the car with the flats for the ride home"
+    },
+    "accessory_pairing": [
+      "red lip"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_concert_corset_cargo",
+    "title": "Corset top + olive cargos + boots",
+    "occasions": [
+      "concert_gig",
+      "college_fest",
+      "house_party"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "streetwear",
+      "bold"
+    ],
+    "company_fit": [
+      "friends"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "ac_indoors",
+      "dry_heat"
+    ],
+    "palette": [
+      "black",
+      "olive"
+    ],
+    "modesty_level": 1,
+    "comfort": [
+      "pockets",
+      "flats_only",
+      "easy_to_dance"
+    ],
+    "price_band_inr": [
+      1500,
+      4000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "top",
+        "garment": "corset_top",
+        "colour": "black",
+        "fabric": "denim"
+      },
+      {
+        "slot": "bottom",
+        "garment": "cargo",
+        "colour": "olive",
+        "fabric": "cotton",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "boots",
+        "colour": "black"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "layered_chains",
+        "colour": "silver"
+      }
+    ],
+    "styling_tip": "Cargo pockets = no bag in the mosh pit. Phone, card, lip balm, done.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Band-poster print tote",
+      "reason": "For merch you'll definitely buy"
+    },
+    "accessory_pairing": [
+      "silver rings"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_date_floral_midi",
+    "title": "Blush floral midi dress",
+    "occasions": [
+      "date_night",
+      "brunch",
+      "birthday_party"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "romantic",
+      "soft_cute"
+    ],
+    "company_fit": [
+      "date",
+      "friends",
+      "family"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "dry_heat",
+      "hot_humid"
+    ],
+    "palette": [
+      "blush",
+      "sage"
+    ],
+    "modesty_level": 2,
+    "comfort": [
+      "flats_only",
+      "below_knee",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      1000,
+      3000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "dress_midi",
+        "colour": "blush",
+        "fabric": "chiffon",
+        "print": "floral",
+        "length": "midi"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sandals",
+        "colour": "beige"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "studs",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Add a tiny bow in the hair and let the dress do the talking.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Book-lover tote",
+      "reason": "Cute enough for the date, big enough for the bookstore after"
+    },
+    "accessory_pairing": [
+      "hair bow"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_eid_lavender_sharara",
+    "title": "Lavender chikankari sharara set",
+    "occasions": [
+      "eid",
+      "family_dinner",
+      "roka_engagement"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "soft_cute",
+      "romantic"
+    ],
+    "company_fit": [
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "dry_heat",
+      "pleasant"
+    ],
+    "palette": [
+      "lavender",
+      "silver"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "below_knee"
+    ],
+    "price_band_inr": [
+      2500,
+      6000
+    ],
+    "trend_tags": [
+      "chikankari_coord"
+    ],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "sharara_set",
+        "colour": "lavender",
+        "fabric": "georgette",
+        "print": "chikankari_embroidery",
+        "length": "ankle"
+      },
+      {
+        "slot": "layer",
+        "garment": "dupatta",
+        "colour": "lavender",
+        "fabric": "organza"
+      },
+      {
+        "slot": "footwear",
+        "garment": "juttis",
+        "colour": "silver"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "chandbalis",
+        "colour": "silver"
+      }
+    ],
+    "styling_tip": "Silver chandbalis over gold. Pastels glow with cool metals.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Pastel embroidered tote",
+      "reason": "Holds all the Eidi envelopes"
+    },
+    "accessory_pairing": [
+      "attar"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_holi_white_kurta_denim",
+    "title": "White kurta + old denims",
+    "occasions": [
+      "holi"
+    ],
+    "ethnic_dial": "indo_western",
+    "vibes": [
+      "comfy",
+      "boho"
+    ],
+    "company_fit": [
+      "friends",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "dry_heat",
+      "hot_humid",
+      "pleasant"
+    ],
+    "palette": [
+      "white",
+      "sky_blue"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "no_dupatta",
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      500,
+      1500
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "top",
+        "garment": "kurta",
+        "colour": "white",
+        "fabric": "cotton",
+        "length": "knee"
+      },
+      {
+        "slot": "bottom",
+        "garment": "straight_jeans",
+        "colour": "sky_blue",
+        "fabric": "denim",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "flats",
+        "colour": "white"
+      }
+    ],
+    "styling_tip": "Oil your hair and arms first. Wear jeans you've already given up on.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Washable canvas tote",
+      "reason": "Gulaal-proof, and it goes straight in the washing machine"
+    },
+    "accessory_pairing": [
+      "sunglasses"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_onam_kasavu",
+    "title": "Kasavu saree + temple jewellery",
+    "occasions": [
+      "onam",
+      "temple_gurudwara",
+      "home_puja"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "minimal",
+      "old_money"
+    ],
+    "company_fit": [
+      "family",
+      "mixed",
+      "colleagues"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "pleasant",
+      "monsoon"
+    ],
+    "palette": [
+      "ivory",
+      "gold"
+    ],
+    "modesty_level": 2,
+    "comfort": [
+      "flats_only",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      1500,
+      5000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "kasavu_saree",
+        "colour": "ivory",
+        "fabric": "cotton",
+        "print": "zari",
+        "length": "ankle"
+      },
+      {
+        "slot": "top",
+        "garment": "blouse",
+        "colour": "gold",
+        "fabric": "silk"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sandals",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "temple_jewellery",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Jasmine in the hair finishes the look. Try a contrast green blouse for a modern twist.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Natural cotton tote",
+      "reason": "For the sadya leftovers your aunt insists you take"
+    },
+    "accessory_pairing": [
+      "jasmine gajra"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_monsoon_rayon_set",
+    "title": "Printed rayon short kurti + cropped pants",
+    "occasions": [
+      "college",
+      "office",
+      "errands"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "comfy",
+      "minimal"
+    ],
+    "company_fit": [
+      "colleagues",
+      "friends",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "monsoon",
+      "hot_humid"
+    ],
+    "palette": [
+      "teal",
+      "white"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "no_dupatta",
+      "flats_only",
+      "covered_shoulders",
+      "pockets",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      700,
+      1800
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "top",
+        "garment": "short_kurti",
+        "colour": "teal",
+        "fabric": "rayon",
+        "print": "block_print",
+        "length": "hip"
+      },
+      {
+        "slot": "bottom",
+        "garment": "straight_pants",
+        "colour": "white",
+        "fabric": "rayon",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sandals",
+        "colour": "black"
+      }
+    ],
+    "styling_tip": "Ankle-length hems stay out of puddles. Rayon dries fast between showers.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Dark printed tote",
+      "reason": "Hides the rain splashes, and the umbrella fits inside"
+    },
+    "accessory_pairing": [
+      "compact umbrella"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_winter_velvet_anarkali",
+    "title": "Emerald velvet anarkali",
+    "occasions": [
+      "wedding_guest",
+      "reception",
+      "lohri",
+      "christmas_newyear"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "main_character",
+      "old_money"
+    ],
+    "company_fit": [
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "cold",
+      "ac_indoors"
+    ],
+    "palette": [
+      "emerald",
+      "gold"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "covered_shoulders",
+      "below_knee",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      4000,
+      12000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "anarkali_set",
+        "colour": "emerald",
+        "fabric": "velvet",
+        "print": "zari",
+        "length": "floor"
+      },
+      {
+        "slot": "layer",
+        "garment": "shawl",
+        "colour": "gold"
+      },
+      {
+        "slot": "footwear",
+        "garment": "block_heels",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "kundan",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Velvet is warm enough that the shawl is for show. Wear kundan and skip the necklace.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Jewel-tone tote",
+      "reason": "For the shagun envelope and a spare pashmina"
+    },
+    "accessory_pairing": [
+      "kundan maang tikka"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_karva_red_banarasi",
+    "title": "Red Banarasi saree",
+    "occasions": [
+      "karva_chauth",
+      "diwali"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "romantic",
+      "main_character"
+    ],
+    "company_fit": [
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "cold",
+      "ac_indoors"
+    ],
+    "palette": [
+      "red",
+      "gold"
+    ],
+    "modesty_level": 2,
+    "comfort": [
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      3000,
+      15000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "saree",
+        "colour": "red",
+        "fabric": "banarasi",
+        "print": "zari",
+        "length": "floor"
+      },
+      {
+        "slot": "top",
+        "garment": "blouse",
+        "colour": "gold",
+        "fabric": "silk"
+      },
+      {
+        "slot": "footwear",
+        "garment": "mojari",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "bangles",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Borrow Mum's Banarasi and style it with a modern backless blouse.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Festive gold-print tote",
+      "reason": "Carries the thali, the sieve and the snacks for after moonrise"
+    },
+    "accessory_pairing": [
+      "red bindi",
+      "sindoor-red nails"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_puja_laal_paar",
+    "title": "White saree with red border (laal paar)",
+    "occasions": [
+      "durga_puja",
+      "home_puja",
+      "temple_gurudwara"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "minimal",
+      "old_money"
+    ],
+    "company_fit": [
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "pleasant"
+    ],
+    "palette": [
+      "white",
+      "red"
+    ],
+    "modesty_level": 2,
+    "comfort": [
+      "flats_only",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      800,
+      4000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "saree",
+        "colour": "white",
+        "fabric": "cotton",
+        "print": "solid",
+        "length": "ankle"
+      },
+      {
+        "slot": "top",
+        "garment": "blouse",
+        "colour": "red",
+        "fabric": "cotton"
+      },
+      {
+        "slot": "footwear",
+        "garment": "flats",
+        "colour": "red"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "bangles",
+        "colour": "red"
+      }
+    ],
+    "styling_tip": "A big red bindi and kohl-lined eyes. Pandal-hopping all night in cotton.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Red-and-white tote",
+      "reason": "For the bhog and all the pandal-hopping snacks"
+    },
+    "accessory_pairing": [
+      "shakha-pola bangles"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_airport_hoodie",
+    "title": "Oversized hoodie + straight jeans",
+    "occasions": [
+      "travel_airport",
+      "gym_to_cafe",
+      "errands",
+      "movie_outing"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "comfy",
+      "streetwear"
+    ],
+    "company_fit": [
+      "friends",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "cold",
+      "ac_indoors",
+      "pleasant"
+    ],
+    "palette": [
+      "grey",
+      "navy",
+      "white"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "pockets",
+      "no_dupatta",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      1000,
+      3000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "top",
+        "garment": "hoodie",
+        "colour": "grey",
+        "fabric": "cotton"
+      },
+      {
+        "slot": "bottom",
+        "garment": "straight_jeans",
+        "colour": "navy",
+        "fabric": "denim",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "sneakers",
+        "colour": "white"
+      }
+    ],
+    "styling_tip": "Slip-on sneakers get through airport security faster.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Zip-top travel tote",
+      "reason": "Works as a cabin tote: passport, Kindle, snacks"
+    },
+    "accessory_pairing": [
+      "cap"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_interview_blazer",
+    "title": "Navy blazer + white blouse + trousers",
+    "occasions": [
+      "interview",
+      "office",
+      "first_day_work",
+      "graduation"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "boss",
+      "minimal",
+      "old_money"
+    ],
+    "company_fit": [
+      "colleagues",
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "ac_indoors",
+      "pleasant",
+      "cold"
+    ],
+    "palette": [
+      "navy",
+      "white"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "pockets",
+      "no_dupatta",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      2500,
+      7000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "layer",
+        "garment": "blazer",
+        "colour": "navy",
+        "fabric": "crepe"
+      },
+      {
+        "slot": "top",
+        "garment": "blouse_western",
+        "colour": "white",
+        "fabric": "crepe"
+      },
+      {
+        "slot": "bottom",
+        "garment": "trousers",
+        "colour": "navy",
+        "fabric": "crepe",
+        "length": "ankle"
+      },
+      {
+        "slot": "footwear",
+        "garment": "loafers",
+        "colour": "black"
+      }
+    ],
+    "styling_tip": "One piece of jewellery, max. Let your CV be the loud part.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Structured laptop tote",
+      "reason": "Fits a laptop and printed CVs without creasing them"
+    },
+    "accessory_pairing": [
+      "watch"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_ganpati_yellow_set",
+    "title": "Marigold cotton kurta set",
+    "occasions": [
+      "ganesh_chaturthi",
+      "pongal",
+      "home_puja",
+      "temple_gurudwara",
+      "raksha_bandhan"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "soft_cute",
+      "comfy"
+    ],
+    "company_fit": [
+      "family",
+      "mixed"
+    ],
+    "weather_fit": [
+      "hot_humid",
+      "monsoon",
+      "pleasant"
+    ],
+    "palette": [
+      "yellow",
+      "orange",
+      "white"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "no_sheer"
+    ],
+    "price_band_inr": [
+      800,
+      2200
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "kurta_set",
+        "colour": "yellow",
+        "fabric": "cotton",
+        "print": "bandhani",
+        "length": "ankle"
+      },
+      {
+        "slot": "layer",
+        "garment": "dupatta",
+        "colour": "orange",
+        "fabric": "mulmul"
+      },
+      {
+        "slot": "footwear",
+        "garment": "kolhapuris",
+        "colour": "brown"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "jhumkas",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "A mulmul dupatta won't stick to you in the humidity during aarti.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Marigold print tote",
+      "reason": "Modak boxes fit perfectly"
+    },
+    "accessory_pairing": [
+      "gajra"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_lohri_phulkari",
+    "title": "Black suit + phulkari dupatta",
+    "occasions": [
+      "lohri",
+      "family_dinner"
+    ],
+    "ethnic_dial": "desi",
+    "vibes": [
+      "bold",
+      "main_character"
+    ],
+    "company_fit": [
+      "family",
+      "friends",
+      "mixed"
+    ],
+    "weather_fit": [
+      "cold"
+    ],
+    "palette": [
+      "black",
+      "magenta",
+      "orange"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "easy_to_dance"
+    ],
+    "price_band_inr": [
+      1500,
+      4500
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "kurta_set",
+        "colour": "black",
+        "fabric": "wool",
+        "length": "knee"
+      },
+      {
+        "slot": "layer",
+        "garment": "dupatta",
+        "colour": "magenta",
+        "print": "phulkari"
+      },
+      {
+        "slot": "footwear",
+        "garment": "juttis",
+        "colour": "gold"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "jhumkas",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Let the phulkari be the hero. Keep a woollen layer under it for the bonfire.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Bright folk-art tote",
+      "reason": "For the rewri, gajak and popcorn"
+    },
+    "accessory_pairing": [
+      "paranda"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_christmas_sweater_midi",
+    "title": "Red sweater + checked midi skirt",
+    "occasions": [
+      "christmas_newyear",
+      "brunch",
+      "family_dinner"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "soft_cute",
+      "old_money"
+    ],
+    "company_fit": [
+      "family",
+      "friends",
+      "mixed"
+    ],
+    "weather_fit": [
+      "cold",
+      "ac_indoors"
+    ],
+    "palette": [
+      "red",
+      "beige",
+      "brown"
+    ],
+    "modesty_level": 3,
+    "comfort": [
+      "flats_only",
+      "covered_shoulders",
+      "below_knee",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      1500,
+      4000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "top",
+        "garment": "sweater",
+        "colour": "red",
+        "fabric": "wool"
+      },
+      {
+        "slot": "bottom",
+        "garment": "skirt_midi",
+        "colour": "beige",
+        "fabric": "wool",
+        "print": "checks",
+        "length": "midi"
+      },
+      {
+        "slot": "footwear",
+        "garment": "boots",
+        "colour": "brown"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "studs",
+        "colour": "gold"
+      }
+    ],
+    "styling_tip": "Tuck the sweater in at the front only, and wear boots with thick socks.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Winter-print tote",
+      "reason": "For gifts for the Secret Santa exchange"
+    },
+    "accessory_pairing": [
+      "beret"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
+  },
+  {
+    "id": "of_party_sequin_mini",
+    "title": "Silver sequin mini dress",
+    "occasions": [
+      "birthday_party",
+      "house_party",
+      "clubbing",
+      "christmas_newyear"
+    ],
+    "ethnic_dial": "western",
+    "vibes": [
+      "bold",
+      "main_character"
+    ],
+    "company_fit": [
+      "friends",
+      "date"
+    ],
+    "weather_fit": [
+      "pleasant",
+      "ac_indoors",
+      "dry_heat"
+    ],
+    "palette": [
+      "silver",
+      "black"
+    ],
+    "modesty_level": 0,
+    "comfort": [
+      "easy_to_dance",
+      "no_dupatta"
+    ],
+    "price_band_inr": [
+      1500,
+      4000
+    ],
+    "trend_tags": [],
+    "items": [
+      {
+        "slot": "full",
+        "garment": "dress_mini",
+        "colour": "silver",
+        "fabric": "net",
+        "print": "sequins",
+        "length": "crop"
+      },
+      {
+        "slot": "footwear",
+        "garment": "block_heels",
+        "colour": "black"
+      },
+      {
+        "slot": "jewellery",
+        "garment": "studs",
+        "colour": "silver"
+      }
+    ],
+    "styling_tip": "The dress is the jewellery. Keep hair sleek and earrings small.",
+    "tote_pairing": {
+      "sku": "TBD",
+      "style": "Glitter-print tote",
+      "reason": "For the birthday gift and a spare pair of flats"
+    },
+    "accessory_pairing": [
+      "silver clutch"
+    ],
+    "source": {
+      "type": "curated"
+    },
+    "review": {
+      "tagged_by": "human",
+      "approved": false
+    }
   }
 ]
